@@ -11,6 +11,27 @@ html {
     //font-family: ;
 }
 
+body {
+    display: grid;
+    grid-template-columns: 20rem auto;
+    height: 100vh;
+    transition: $tr-default;
+    nav {
+        background-color: #fff;
+        border-right: 1px solid $c-gray-200;
+        transition: $tr-default;
+    }
+    main {
+        width: 100%;
+    }
+    &.toggle-nav {
+        grid-template-columns: 0 auto;
+        nav {
+            transform: translateX(-20rem);
+        }
+    }
+}
+
 .auth-view {
     height: 100vh;
     display: flex;
@@ -63,5 +84,19 @@ html {
             height: 3rem;
             padding: 0 1rem;
         }
+    }
+}
+
+.nav-sidebar {
+    padding: 1.25rem;
+
+    .nav-sidebar__modules {
+        list-style: none;
+        margin: 0;
+        padding: 2rem 0;
+    }
+
+    .nav-sidebar__module-item {
+
     }
 }
