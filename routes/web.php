@@ -21,3 +21,5 @@ Auth::routes();
 
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+
+Route::get('/notebooks', [\App\Http\Controllers\NotebookController::class, 'index']);

@@ -4,13 +4,19 @@ namespace App\View\Components;
 
 use App\Http\Controllers\DashboardController;
 use App\View\Composers\DashboardComposer;
-use App\View\Composers\NotebooksComposer;
+use App\View\Composers\NotebooksListComposer;
 use Illuminate\View\Component;
 
 class Navigation extends Component
 {
     public const COMPOSERS = [
         DashboardComposer::class,
+        NotebooksListComposer::class,
+    ];
+
+    public const TEMP_URL_MAP = [
+        DashboardComposer::class => '/dashboard',
+        NotebooksListComposer::class => '/notebooks',
     ];
 
     /**
