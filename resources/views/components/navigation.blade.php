@@ -25,8 +25,10 @@
             <ul class="nav-sidebar__modules">
                 @foreach(\App\View\Components\Navigation::getComposers() as $composer)
                     <li class="nav-sidebar__module-item">
-                        <i class="fa-fw fas fa-{{ $composer->getIcon() }}"></i>
-                        <span class="nav-sidebar__module-item-title">{{ $composer->getTitle() }}</span>
+                        <a href="{{ \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] }}" class="nav-sidebar__module-item-anchor">
+                            <i class="nav-sidebar__module-item-icon fa-fw fas fa-{{ $composer->getIcon() }}"></i>
+                            <span class="nav-sidebar__module-item-title">{{ $composer->getTitle() }}</span>
+                        </a>
                     </li>
                 @endforeach
             </ul>
