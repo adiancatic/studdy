@@ -6,7 +6,7 @@ use Illuminate\View\View;
 
 class DashboardComposer extends AbstractComposer
 {
-    protected string $title = "Dashboard";
-    protected string $icon = "objects-column";
-    protected string $view = "dashboard";
+    protected const TITLE = "Dashboard";
+    public const ICON = "objects-column";
+    public const VIEW = "dashboard";
 }

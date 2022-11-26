@@ -6,9 +6,9 @@ use Illuminate\View\View;
 
 abstract class AbstractComposer
 {
-    protected string $title;
-    protected string $icon;
-    protected string $view;
+    protected const TITLE = "";
+    public const ICON = "";
+    public const VIEW = "";
 
     /**
      * @param View $view
@@ -20,57 +20,18 @@ abstract class AbstractComposer
         $view->with('icon', $this->getIcon());
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
-        return $this->title;
+        return __(static::TITLE);
     }
 
-    /**
-     * @param string $title
-     * @return AbstractComposer
-     */
-    public function setTitle(string $title)
-    {
-        $this->title = __($title);
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getIcon(): string
     {
-        return $this->icon;
+        return static::ICON;
     }
 
-    /**
-     * @param string $icon
-     * @return AbstractComposer
-     */
-    public function setIcon(string $icon)
-    {
-        $this->icon = $icon;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getView(): string
     {
-        return $this->view;
-    }
-
-    /**
-     * @param string $view
-     * @return AbstractComposer
-     */
-    public function setView(string $view)
-    {
-        $this->view = $view;
-        return $this;
+        return static::VIEW;
     }
 }
