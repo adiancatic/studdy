@@ -2,9 +2,8 @@
 
 namespace App\View\Components;
 
-use App\Http\Controllers\DashboardController;
 use App\View\Composers\DashboardComposer;
-use App\View\Composers\NotebooksListComposer;
+use App\View\Composers\Notebooks\NotebooksListComposer;
 use Illuminate\View\Component;
 
 class Navigation extends Component
