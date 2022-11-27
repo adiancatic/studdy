@@ -1,5 +1,22 @@
 .nav-sidebar {
-    padding: 1.25rem;
+    padding: 1.5rem 1.25rem;
+
+    .nav-sidebar__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.75rem;
+    }
+
+    .nav-sidebar__logo {
+        display: flex;
+        height: 1.5rem;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
+    }
 
     .nav-sidebar__modules {
         list-style: none;
