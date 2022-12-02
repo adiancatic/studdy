@@ -18,6 +18,23 @@
         }
     }
 
+    .nav-sidebar__user {
+        .dropdown-menu {
+            min-width: 14rem;
+        }
+        .user-info {
+            .user-name {
+                color: $c-gray-900;
+                margin: 0;
+            }
+            .user-email {
+                font-size: 0.75rem;
+                color: $c-gray-500;
+                margin: 0;
+            }
+        }
+    }
+
     .nav-sidebar__modules {
         list-style: none;
         margin: 0;

@@ -16,17 +16,19 @@ body {
     grid-template-columns: 20rem auto;
     height: 100vh;
     transition: $tr-default;
-    nav {
+    transition-property: width, grid-template-columns;
+    .nav-sidebar {
         background-color: #fff;
         border-right: 1px solid $c-gray-200;
         transition: $tr-default;
+        transition-property: transform;
     }
     main {
         width: 100%;
     }
     &.toggle-nav {
         grid-template-columns: 0 auto;
-        nav {
+        .nav-sidebar {
             transform: translateX(-20rem);
         }
     }

@@ -6,31 +6,28 @@
                  srcset="{{ asset('assets/logo.png') }} 1x, {{ asset('assets/logo@2x.png') }} 2x"
                  alt="{{ config('app.name') }}">
         </a>
-        <div class="nav-sidebar__user">
 
-            <x-dropdown>
-                <x-slot:toggle>
-                    <x-user-avatar/>
-                </x-slot>
+        <x-dropdown align="end" class="nav-sidebar__user">
+            <x-slot name="toggle">
+                <x-user-avatar/>
+            </x-slot>
 
-                <ul class="dropdown-section">
-                    <li class="dropdown-item dropdown-info">
-                        <div class="user-name">{{ Auth::user()->name }}</div>
-                        <div class="user-email">{{ Auth::user()->email }}</div>
-                    </li>
-                </ul>
-                <ul class="dropdown-section">
-                    <li class="dropdown-item dropdown-action">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-door-open"></i>
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
-                    </li>
-                </ul>
-            </x-dropdown>
+            <x-dropdown.item type="info" class="user-info">
+                <div class="user-name">{{ Auth::user()->name }}</div>
+                <div class="user-email">{{ Auth::user()->email }}</div>
+            </x-dropdown.item>
 
-        </div>
+            <x-dropdown.item type="divider" />
+
+            <x-dropdown.item type="action">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-door-open"></i>
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+            </x-dropdown.item>
+        </x-dropdown>
+
     </div>
 
     @if(\App\View\Components\Navigation::COMPOSERS)
