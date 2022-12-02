@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Illuminate\Support\Facades\Auth::guest()
+        ? redirect("/login")
+        : redirect(\App\Providers\RouteServiceProvider::DASHBOARD);
 });
 
 Auth::routes();
