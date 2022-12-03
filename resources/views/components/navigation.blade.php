@@ -33,8 +33,15 @@
     @if(\App\View\Components\Navigation::COMPOSERS)
         <ul class="nav-sidebar__modules">
             @foreach(\App\View\Components\Navigation::getComposers() as $composer)
+                @php
+                    $classes = [
+                        "nav-sidebar__module-item-anchor",
+                        "is-active" => \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] === $getActiveComposer(),
+                    ];
+                @endphp
+
                 <li class="nav-sidebar__module-item">
-                    <a href="{{ \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] }}" class="nav-sidebar__module-item-anchor">
+                    <a href="/{{ \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] }}" @class($classes)>
                         <i class="nav-sidebar__module-item-icon fa-fw fas fa-{{ $composer->getIcon() }}"></i>
                         <span class="nav-sidebar__module-item-title">{{ $composer->getTitle() }}</span>
                     </a>
