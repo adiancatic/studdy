@@ -89,7 +89,47 @@ body {
     }
 }
 
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid $c-gray-200;
+
+    .breadcrumbs__divider {
+        i {
+            font-size: 0.75rem;
+            color: $c-gray-400;
+            padding: 0 0.25rem;
+        }
+    }
+
+    .breadcrumbs__cta,
+    .breadcrumbs__txt {
+        display: inline-flex;
+        font-size: 0.75rem;
+        line-height: 1;
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid transparent;
+        color: $c-gray-500;
+    }
+
+    .breadcrumbs__cta {
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $c-gray-700;
+            background-color: $c-gray-100;
+            border: 1px solid $c-gray-200;
+        }
+    }
+}
+
+@import 'basic/button';
 @import 'basic/dropdown';
 
 @import 'navigation';
 @import 'componentns/user-avatar';
+@import 'componentns/item-list';

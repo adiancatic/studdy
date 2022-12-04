@@ -1,0 +1,34 @@
+.btn {
+    display: inline-flex;
+    font-size: 0.75rem;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 2px 4px -2px rgba($c-gray-900, 0.16);
+}
+
+.btn-sm {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.btn-xs {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-default {
+    color: $c-gray-500;
+    background-color: $c-gray-100;
+    border: 1px solid $c-gray-200;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $c-purple-500;
+        border-color: $c-purple-300;
+        background-color: $c-purple-50;
+    }
+}
