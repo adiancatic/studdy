@@ -9,6 +9,8 @@ class Note extends Model
 {
     use HasFactory;
 
+    public const PARENT_ID = "notebook_id";
+
     public function notebook(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Notebook::class);

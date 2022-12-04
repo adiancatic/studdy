@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4">
-        <h1>{{ $note->title }}</h1>
-        @if($note->content)
-            <div class="note-content">{{ $note->content }}</div>
+    <div>
+        <x-breadcrumbs :for="$self::class"/>
+
+        <h1>{{ $item->title }}</h1>
+        @if($item->content)
+            <div class="note-content">{{ $item->content }}</div>
         @endif
     </div>
 @endsection

@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="p-4">
-        <h1>{{ $title }}</h1>
-        @if(isset($notebooks))
+    <div>
+        <x-breadcrumbs :for="$self::class"/>
+
+        @if(isset($items))
             <ul>
-                @foreach($notebooks as $notebook)
+                @foreach($items as $item)
                     <li>
-                        <a href="/notebooks/{{ $notebook->id }}">
-                            <i class="fad fa-{{ $notebook->icon }}"></i>
-                            <span>{{ $notebook->title }}</span>
+                        <a href="/notebooks/{{ $item->id }}">
+                            <i class="fad fa-{{ $item->icon }}"></i>
+                            <span>{{ $item->title }}</span>
                         </a>
                     </li>
                 @endforeach

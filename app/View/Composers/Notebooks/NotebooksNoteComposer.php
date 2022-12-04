@@ -3,39 +3,18 @@
 namespace App\View\Composers\Notebooks;
 
 use App\Models\Note;
-use App\View\Composers\AbstractComposer;
-use Illuminate\View\View;
+use App\View\Composers\AbstractItemComposer;
 
-class NotebooksNoteComposer extends AbstractComposer
+class NotebooksNoteComposer extends AbstractItemComposer
 {
-    protected const TITLE = "";
+    public const MODEL = Note::class;
+
+    protected const TITLE = "Note";
     public const ICON = "";
     public const VIEW = "composers.notebooks.note";
 
-    protected Note $note;
-
-    public function compose(View $view): void
+    public static function parentComposer(): string
     {
-        parent::compose($view);
-
-        $this->setNote($view->getData()["note"]);
-    }
-
-    /**
-     * @return Note
-     */
-    public function getNote(): Note
-    {
-        return $this->note;
-    }
-
-    /**
-     * @param Note $note
-     * @return NotebooksNoteComposer
-     */
-    public function setNote(Note $note)
-    {
-        $this->note = $note;
-        return $this;
+        return NotebooksItemComposer::class;
     }
 }

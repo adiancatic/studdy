@@ -16,14 +16,14 @@ class NotebookController extends Controller
     public function show($id): \Illuminate\Contracts\View\View
     {
         return view('composers.notebooks.item', [
-            "notebook" => Notebook::findOrFail($id)
+            "item" => Notebook::findOrFail($id)
         ]);
     }
 
     public function note($id): \Illuminate\Contracts\View\View
     {
         return view('composers.notebooks.note', [
-            "note" => Note::findOrFail($id)
+            "item" => Note::findOrFail($id)
         ]);
     }
 }
