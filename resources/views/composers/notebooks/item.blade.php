@@ -5,14 +5,14 @@
         <x-breadcrumbs :for="$self::class"/>
 
         <div class="item-list">
-            <div class="item-list__header">
-                <h1 class="item-list__title">
-                    <i class="far fa-note"></i>
-                    {{ __("Notes") }}
-                </h1>
-            </div>
-
             @if(! $item->notes->isEmpty())
+                <div class="item-list__header">
+                    <h1 class="item-list__title">
+                        <i class="far fa-note"></i>
+                        {{ __("Notes") }}
+                    </h1>
+                </div>
+
                 <div class="item-list__body">
                     @foreach($item->notes as $note)
                         <div class="item-list__item">
@@ -30,8 +30,11 @@
                     @endforeach
                 </div>
             @else
-                {{-- todo add empty section --}}
-                There are no notes
+                <x-empty-state.basic
+                    title="Your notebook is empty"
+                    subtitle="Fill it with notes or quizes"
+                    icon="note"
+                />
             @endif
         </div>
 

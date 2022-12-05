@@ -1,0 +1,50 @@
+.empty-state--basic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem;
+
+    .empty-state__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 1.5rem;
+        background-image: linear-gradient(225deg, $c-gray-50 0%, #fff 100%);
+        border: 1px solid $c-gray-200;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba($c-gray-900, 0.08);
+
+        i {
+            font-size: 1.5rem;
+            color: $c-gray-500;
+        }
+    }
+
+    .empty-state__title,
+    .empty-state__subtitle {
+        color: $c-gray-400;
+        font-weight: $fw-regular;
+        margin: 0;
+    }
+
+    .empty-state__title {
+        font-size: 2rem;
+    }
+
+    .empty-state__subtitle {
+        font-size: 1.125rem;
+        margin-top: 0.5rem;
+    }
+
+    .empty-state__description {
+        color: $c-gray-500;
+        font-size: 0.875rem;
+        margin-top: 1rem;
+    }
+
+    .empty-state__ctas {
+        margin-top: 2rem;
+    }
+}
