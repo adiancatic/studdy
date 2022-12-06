@@ -1,0 +1,53 @@
+.notebooks-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3.5rem;
+}
+
+.notebook-item {
+    flex: 33% 0 0;
+    display: flex;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+
+    .notebook-item__icon {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 1rem;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(225deg, $c-blue-100 0%, #fff 100%);
+        border: 1px solid $c-gray-200;
+
+        i {
+            font-size: 2.25rem;
+            color: $c-blue-900;
+        }
+    }
+
+    .notebook-item__info {
+        display: flex;
+        flex-direction: column;
+        padding: 0.75rem 0;
+    }
+
+    .notebook-item__title {
+        color: $c-gray-900;
+        font-size: 1.25rem;
+        margin: 0 0 0.25rem;
+    }
+
+    .notebook-item__note-count {
+        color: $c-gray-500;
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: $c-gray-50;
+        border-color: $c-gray-100;
+    }
+}
