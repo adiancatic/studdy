@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head')
-    <!-- Scripts -->
+    @livewireStyles
     @vite([
         'resources/plugins/fontawesome/css/all.min.css',
         'resources/scss/app.scss',
@@ -11,10 +11,12 @@
 
 @section('body')
     <body>
-        <x-navigation/>
+        @livewire("components.navigation")
 
         <main>
-            @yield('content')
+            {{ $slot }}
         </main>
+
+        @livewireScripts
     </body>
 @endsection

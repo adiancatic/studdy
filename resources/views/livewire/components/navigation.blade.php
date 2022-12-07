@@ -30,20 +30,20 @@
 
     </div>
 
-    @if(\App\View\Components\Navigation::COMPOSERS)
+    @if($this::VIEWS)
         <ul class="nav-sidebar__modules">
-            @foreach(\App\View\Components\Navigation::getComposers() as $composer)
+            @foreach($this::getViews() as $view)
                 @php
                     $classes = [
                         "nav-sidebar__module-item-anchor",
-                        "is-active" => \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] === $getActiveComposer(),
+                        "is-active" => $this::TEMP_URL_MAP[$view::class] === $this->getActiveView(),
                     ];
                 @endphp
 
                 <li class="nav-sidebar__module-item">
-                    <a href="/{{ \App\View\Components\Navigation::TEMP_URL_MAP[$composer::class] }}" @class($classes)>
-                        <i class="nav-sidebar__module-item-icon fa-fw fas fa-{{ $composer->getIcon() }}"></i>
-                        <span class="nav-sidebar__module-item-title">{{ $composer->getTitle() }}</span>
+                    <a href="/{{ $this::TEMP_URL_MAP[$view::class] }}" @class($classes)>
+                        <i class="nav-sidebar__module-item-icon fa-fw fas fa-{{ $view->getIcon() }}"></i>
+                        <span class="nav-sidebar__module-item-title">{{ $view->getTitle() }}</span>
                     </a>
                 </li>
             @endforeach

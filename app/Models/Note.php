@@ -11,6 +11,12 @@ class Note extends Model
 
     public const PARENT_ID = "notebook_id";
 
+    protected $fillable = [
+        "title",
+        "content",
+        "notebook_id",
+    ];
+
     public function notebook(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Notebook::class);

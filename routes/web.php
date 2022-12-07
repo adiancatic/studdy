@@ -21,9 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+/*
+ * Dashboard
+ */
+Route::get('/dashboard', \App\Http\Livewire\Views\Dashboard::class);
 
-Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
-
-Route::get('/notebooks', [\App\Http\Controllers\NotebookController::class, 'index']);
-Route::get('/notebooks/{id}', [\App\Http\Controllers\NotebookController::class, 'show']);
-Route::get('/notebooks/{notebook_id}/{note_id}', [\App\Http\Controllers\NotebookController::class, 'note']);
+/*
+ * Notebooks
+ */
+Route::get('/notebooks', \App\Http\Livewire\Views\Notebooks\NotebookList::class);
+Route::get('/notebooks/{notebookId}', \App\Http\Livewire\Views\Notebooks\Notebook::class);
+Route::get('/notebooks/{notebookId}/{noteId}', \App\Http\Livewire\Views\Notebooks\Note::class);
