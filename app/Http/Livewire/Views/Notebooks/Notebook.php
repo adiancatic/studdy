@@ -9,6 +9,7 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
 {
     use BreadcrumbTrait;
 
+    /** @var \App\Models\Notebook */
     public $notebook;
     /** @var \App\Http\Livewire\Views\Notebooks\Note[] */
     public $notes;
@@ -25,7 +26,6 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
     public function mount($notebookId)
     {
         $this->notebook = \App\Models\Notebook::find($notebookId);
-
         $this->notes = $this->notebook->notes;
     }
 
@@ -38,6 +38,13 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
         ]);
 
         $this->notes->push($newNote);
+    }
+
+    public function deleteNote(Note $note)
+    {
+        $this->notes = $this->notes->diff([$note]);
+
+        $note->delete();
     }
 
     public function render()
