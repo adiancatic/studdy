@@ -32,11 +32,28 @@
     border-bottom: 1px solid $c-gray-200;
     font-size: 0.875rem;
 
-    .item-list__item-index {
+    .item-list__item-actions {
+        display: flex;
+        justify-content: center;
         min-width: 1.5rem;
+        margin-right: 1rem;
+
+        .dropdown {
+            display: none;
+
+            .dropdown-btn {
+                background-color: $c-gray-100;
+                border: 1px solid $c-gray-200;
+                color: $c-gray-500;
+                border-radius: 0.25rem;
+                min-width: 1.5rem;
+            }
+        }
+    }
+
+    .item-list__item-index {
         color: $c-gray-500;
         text-align: center;
-        margin-right: 1rem;
     }
 
     .item-list__item-title {
@@ -57,18 +74,26 @@
 
     .item-list__item-cta {
         margin-left: 0.75rem;
-
-        opacity: 0;
-        pointer-events: none;
-        transition: $tr-quick;
     }
 
     .item-list__item-author {}
 
-    &:hover {
+    &:not(:hover) {
         .item-list__item-cta {
-            opacity: 1;
-            pointer-events: initial;
+            display: none;
+        }
+    }
+
+    &:hover,
+    &:focus-within {
+        .item-list__item-actions {
+            .dropdown {
+                display: initial;
+            }
+
+            .item-list__item-index {
+                display: none;
+            }
         }
     }
 }

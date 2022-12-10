@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,12 @@ class Note extends Model
     public function notebook(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Notebook::class);
+    }
+
+    protected function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "/notebooks/{$this->notebook_id}/{$this->id}"
+        );
     }
 }

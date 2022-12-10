@@ -14,20 +14,15 @@
             </div>
 
             <div class="item-list__body">
-                @foreach($notes as $note)
-                    <div class="item-list__item" wire:key>
-                        <span class="item-list__item-index">{{ $loop->iteration }}</span>
-                        <span class="item-list__item-title">
-                            {{ $note->title }}
-                            <a class="btn btn-default btn-xs item-list__item-cta" href="/notebooks/{{ $notes[0]->notebook_id }}/{{ $note->id }}">{{ __("Open") }}</a>
-                            <button wire:click="deleteNote({{ $note->id }})" class="btn btn-default btn-xs" href="">Delete</button>
-                        </span>
-                        <span class="item-list__item-date">
-                            <i class="far fa-calendar"></i>
-                            {{ $note->created_at->format("d M Y") }}
-                        </span>
-                        <span class="item-list__item-author">{{ $note->author }}</span>
-                    </div>
+                @foreach($notes as $index => $note)
+                    <livewire:components.list-item
+                        :index="$loop->iteration"
+                        :itemId="$note->id"
+                        :title="$note->title"
+                        :url="$note->url"
+                        :date="$note->created_at->format('d M Y')"
+                        :author="$note->author"
+                        wire:key="{{ $note->id }}" />
                 @endforeach
 
                 <div class="item-list__item">

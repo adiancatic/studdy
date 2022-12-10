@@ -11,8 +11,12 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
 
     /** @var \App\Models\Notebook */
     public $notebook;
-    /** @var \App\Http\Livewire\Views\Notebooks\Note[] */
+    /** @var Note[] */
     public $notes;
+
+    protected $listeners = [
+        "deleteItem",
+    ];
 
     public function breadcrumbConf()
     {
@@ -40,10 +44,9 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
         $this->notes->push($newNote);
     }
 
-    public function deleteNote(Note $note)
+    public function deleteItem(Note $note)
     {
         $this->notes = $this->notes->diff([$note]);
-
         $note->delete();
     }
 
