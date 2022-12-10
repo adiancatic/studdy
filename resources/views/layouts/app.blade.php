@@ -5,7 +5,6 @@
     @vite([
         'resources/plugins/fontawesome/css/all.min.css',
         'resources/scss/app.scss',
-        'resources/js/app.js',
     ])
 @endsection
 
@@ -18,5 +17,8 @@
         </main>
 
         @livewireScripts
+        @vite([
+            'resources/js/app.js',
+        ])
     </body>
 @endsection
