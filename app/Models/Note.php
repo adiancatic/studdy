@@ -23,6 +23,13 @@ class Note extends Model
         return $this->belongsTo(Notebook::class);
     }
 
+    public function title(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($this->attributes["title"] === null || $this->attributes["title"] === "") ? "Untitled" : $value
+        );
+    }
+
     protected function url(): Attribute
     {
         return Attribute::make(

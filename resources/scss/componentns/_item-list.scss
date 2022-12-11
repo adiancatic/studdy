@@ -28,7 +28,7 @@
 .item-list__item {
     display: flex;
     align-items: center;
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 2rem;
     border-bottom: 1px solid $c-gray-200;
     font-size: 0.875rem;
 
@@ -36,7 +36,7 @@
         display: flex;
         justify-content: center;
         min-width: 1.5rem;
-        margin-right: 1rem;
+        margin-right: 0.75rem;
 
         .dropdown {
             display: none;
@@ -56,11 +56,33 @@
         text-align: center;
     }
 
-    .item-list__item-title {
+    .item-list__item-title-container {
         flex: 1;
         display: inline-flex;
         align-items: center;
         font-size: 1rem;
+    }
+
+    .item-list__item-title-container {
+        input {
+            height: 2rem;
+            background-color: $c-gray-100;
+            outline: 0;
+            border: 0;
+            border-radius: 0.5rem;
+            padding: 0 0.25rem;
+            margin: 0;
+            width: 50%;
+        }
+    }
+
+    .item-list__item-title {
+        padding: 0.25rem;
+
+        &.is-untitled {
+            color: $c-gray-400;
+            font-style: italic;
+        }
     }
 
     .item-list__item-date {

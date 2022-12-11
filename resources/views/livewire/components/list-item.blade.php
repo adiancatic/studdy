@@ -1,38 +1,34 @@
-<div class="item-list__item">
+@php
+    $titleClasses = [
+        "item-list__item-title",
+        "is-untitled" => $title === __("Untitled"),
+    ];
+@endphp
+
+<div class="item-list__item" data-id="{{ $itemId }}">
     <div class="item-list__item-actions">
         <span class="item-list__item-index">{{ $index }}</span>
-
         <x-dropdown>
             <x-slot:toggle>
                 <i class="far fa-fw fa-ellipsis-v"></i>
             </x-slot:toggle>
 
             <x-dropdown.item type="action">
-                {{--<a wire:click="$emit('deleteItem', {{ $itemId }})">
-                    <i class="fas fa-fw fa-trash"></i>{{ __("Delete") }}
-                </a>--}}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $index }}">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $index }}">
                     <i class="fas fa-fw fa-trash"></i>{{ __("Delete") }}
                 </a>
             </x-dropdown.item>
         </x-dropdown>
     </div>
-
-    <span class="item-list__item-title">
-        {{ $title }}
+    <div class="item-list__item-title-container">
+        <span @class($titleClasses) onclick="editTitle(this)">{{ $title }}</span>
         <a class="btn btn-default btn-xs item-list__item-cta" href="{{ $url }}">{{ __("Open") }}</a>
-    </span>
-
+    </div>
     <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $date }}</span>
-
     <span class="item-list__item-author">{{ $author }}</span>
 
 
-
-
-
-
-    <div wire:ignore.self class="modal fade" id="exampleModal-{{ $index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="deleteModal-{{ $index }}" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

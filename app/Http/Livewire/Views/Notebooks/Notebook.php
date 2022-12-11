@@ -16,6 +16,8 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
 
     protected $listeners = [
         "deleteItem",
+        "updateItem",
+        "refresh" => '$refresh',
     ];
 
     public function breadcrumbConf()
@@ -48,6 +50,12 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
     {
         $this->notes = $this->notes->diff([$note]);
         $note->delete();
+    }
+
+    public function updateItem(Note $note, $data)
+    {
+        $note->fill($data)->save();
+        $this->emit("refresh");
     }
 
     public function render()
