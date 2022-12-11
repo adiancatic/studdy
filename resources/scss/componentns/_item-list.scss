@@ -156,6 +156,7 @@
         background-color: #fff;
         border-radius: 0.5rem;
         box-shadow: 0 0 1rem 0 rgba($c-blue-900, 0.12);
+
         & > *:not(
             .item-list__item-handle,
             .item-list__item-actions,
@@ -164,4 +165,8 @@
             visibility: hidden;
         }
     }
+}
+
+.draggable--is-dragging * {
+    cursor: grabbing !important;
 }
