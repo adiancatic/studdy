@@ -1,12 +1,6 @@
 <div>
     @livewire("components.breadcrumbs", ["node" => static::class])
 
-    @php
-        // dd(
-        //     (new \App\Models\Note)->figureOutOrder(1)
-        // )
-    @endphp
-
     <div class="item-list">
         @if(! $notes->isEmpty())
             <div class="item-list__header">
@@ -37,10 +31,23 @@
                 </div>
             </div>
         @else
+
+            @php
+                ob_start();
+                @endphp
+                <a href="#" wire:click="addNote({{ $notebook->id }})" class="btn btn-default">
+                    <i class="fal fa-plus"></i>
+                    {{ __("Add note") }}
+                </a>
+                @php
+                $cta = ob_get_clean();
+            @endphp
+
             <x-empty-state.basic
                 title="Your notebook is empty"
                 subtitle="Fill it with notes or quizes"
                 icon="note"
+                :ctas="[$cta]"
             />
         @endif
     </div>

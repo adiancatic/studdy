@@ -18,9 +18,9 @@
     @endif
 
     @if($ctas)
-        <div class="empty-states__ctas">
+        <div class="empty-state__ctas">
             @foreach($ctas as $cta)
-                {{ $cta }}
+                {!! $cta !!}
             @endforeach
         </div>
     @endif
