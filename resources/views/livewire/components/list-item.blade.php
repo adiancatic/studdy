@@ -5,7 +5,8 @@
     ];
 @endphp
 
-<div class="item-list__item" data-id="{{ $itemId }}">
+<div class="item-list__item" data-id="{{ $itemId }}" wire:sortable.item="{{ $itemId }}">
+    <span class="item-list__item-handle" wire:sortable.handle></span>
     <div class="item-list__item-actions">
         <span class="item-list__item-index">{{ $index }}</span>
         <x-dropdown>

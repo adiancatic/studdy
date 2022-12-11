@@ -1,6 +1,12 @@
 <div>
     @livewire("components.breadcrumbs", ["node" => static::class])
 
+    @php
+        // dd(
+        //     (new \App\Models\Note)->figureOutOrder(1)
+        // )
+    @endphp
+
     <div class="item-list">
         @if(! $notes->isEmpty())
             <div class="item-list__header">
@@ -13,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="item-list__body">
+            <div wire:sortable="updateOrder" class="item-list__body">
                 @foreach($notes as $index => $note)
                     <livewire:components.list-item
                         :index="$loop->iteration"

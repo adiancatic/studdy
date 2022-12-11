@@ -31,6 +31,24 @@
     padding: 0.5rem 2rem;
     border-bottom: 1px solid $c-gray-200;
     font-size: 0.875rem;
+    position: relative;
+
+    .item-list__item-handle {
+        display: flex;
+        column-gap: 1px;
+        position: absolute;
+        margin-left: -1.5rem;
+        cursor: grab;
+        padding: 0.25rem;
+
+        &::before,
+        &::after {
+            content: "\f142";
+            font-family: "Font Awesome 6 Pro";
+            font-weight: 300;
+            color: $c-gray-500;
+        }
+    }
 
     .item-list__item-actions {
         display: flex;
@@ -106,6 +124,12 @@
         }
     }
 
+    &:not(:hover, &.draggable-mirror) {
+        .item-list__item-handle {
+            display: none;
+        }
+    }
+
     &:hover,
     &:focus-within {
         .item-list__item-actions {
@@ -116,6 +140,28 @@
             .item-list__item-index {
                 display: none;
             }
+        }
+    }
+
+    &.draggable-source--is-dragging {
+        background-color: $c-purple-50;
+        border: 1px dashed $c-purple-500;
+        border-radius: 0.5rem;
+        * {
+            visibility: hidden;
+        }
+    }
+
+    &.draggable-mirror {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 1rem 0 rgba($c-blue-900, 0.12);
+        & > *:not(
+            .item-list__item-handle,
+            .item-list__item-actions,
+            .item-list__item-title-container
+        ) {
+            visibility: hidden;
         }
     }
 }

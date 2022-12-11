@@ -1,4 +1,5 @@
 import './bootstrap';
+import 'livewire-sortable'
 
 window.editTitle = function editTitle(el) {
     let input = document.createElement("input");

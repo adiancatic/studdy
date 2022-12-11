@@ -15,6 +15,7 @@ class Note extends Model
     protected $fillable = [
         "title",
         "content",
+        "order",
         "notebook_id",
     ];
 
@@ -23,10 +24,10 @@ class Note extends Model
         return $this->belongsTo(Notebook::class);
     }
 
-    public function title(): Attribute
+    protected function title(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ($this->attributes["title"] === null || $this->attributes["title"] === "") ? "Untitled" : $value
+            get: fn ($value) => ($value === null || $value === "") ? "Untitled" : $value
         );
     }
 

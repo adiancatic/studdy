@@ -32,14 +32,12 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
     public function mount($notebookId)
     {
         $this->notebook = \App\Models\Notebook::find($notebookId);
-        $this->notes = $this->notebook->notes;
+        $this->notes = $this->notebook->notes()->orderBy("order")->get();
     }
 
     public function addNote($notebookId)
     {
         $newNote = Note::create([
-            "title" => "New note",
-            "content" => "...",
             "notebook_id" => $notebookId,
         ]);
 
@@ -55,6 +53,20 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
     public function updateItem(Note $note, $data)
     {
         $note->fill($data)->save();
+        $this->emit("refresh");
+    }
+
+    public function updateOrder($items)
+    {
+        $order = collect($items)->pluck("order", "value")->toArray();
+
+        foreach ($this->notes as $note) {
+            // dump("before: {$note->order} | after: {$order[$note->id]}");
+            $note->order = $order[$note->id];
+            $note->save();
+        }
+
+        $this->notes = $this->notebook->fresh()->notes()->orderBy("order")->get();
         $this->emit("refresh");
     }
 
