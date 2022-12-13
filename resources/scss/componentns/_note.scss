@@ -1,0 +1,25 @@
+.note {
+    .note__title {
+        margin-bottom: 2.5rem;
+    }
+
+    .note__container {
+        max-width: 50rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 6rem 0 0;
+    }
+
+    /*
+     * EditorJs
+     */
+    .ce-toolbar__content,
+    .ce-block__content {
+        max-width: initial;
+        margin: 0;
+    }
+
+    .ce-paragraph {
+        hyphens: auto;
+    }
+}
