@@ -33,5 +33,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notebooks', \App\Http\Livewire\Views\Notebooks\NotebookList::class);
     Route::get('/notebooks/{notebookId}', \App\Http\Livewire\Views\Notebooks\Notebook::class);
     Route::get('/notebooks/{notebookId}/{noteId}', \App\Http\Livewire\Views\Notebooks\Note::class);
+
+    /*
+     * Calendar
+     */
+    Route::get('/calendar', \App\Http\Livewire\Views\Calendar\Calendar::class);
 });
 
