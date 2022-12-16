@@ -23,7 +23,7 @@
 .dropdown-item {
     padding: 0;
 
-    &, a {
+    &, a, button {
         color: $c-gray-900;
         &:hover,
         &:active {
@@ -31,12 +31,15 @@
         }
     }
 
-    a {
+    a, button {
         display: flex;
         align-items: center;
         padding: 0.75rem 1rem;
         text-decoration: none;
         cursor: pointer;
+        background: none;
+        border: 0;
+        width: 100%;
     }
 
     i {

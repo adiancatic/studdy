@@ -12,8 +12,13 @@ class Calendar extends AbstractView
     protected const TITLE = "Calendar";
     public const ICON = "calendar";
 
-    const TYPE_WEEK = "week";
-    const TYPE_MONTH = "month";
+    public const TYPE_WEEK = "week";
+    public const TYPE_MONTH = "month";
+
+    public const TYPES = [
+        self::TYPE_WEEK => "Week",
+        self::TYPE_MONTH => "Month",
+    ];
 
     /** @var Carbon */
     public $now;
