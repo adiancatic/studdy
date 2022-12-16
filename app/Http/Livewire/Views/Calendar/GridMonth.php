@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Views\Calendar;
 
+use App\Models\Event;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
@@ -14,15 +15,27 @@ class GridMonth extends Component
     public $offset;
     public $offsetType = Calendar::TYPE_MONTH;
 
-    public function getGrid()
+    public function getPeriod()
     {
         $firstWeekDayOfMonth = $this->now->firstOfMonth()->dayOfWeekIso;
 
-        // var_dump($date->getDaysFromStartOfWeek()
         $start = $this->now->firstOfMonth()->add(1 - $firstWeekDayOfMonth, "day");
         $end = $start->add(6, "week")->subDay();
 
         return CarbonPeriod::create($start, "1 day", $end);
+    }
+
+    public function getEvents()
+    {
+        $dates = $this->getPeriod();
+
+        /** @var Event[] $events */
+        $events = \App\Models\Event::whereBetween("date", [
+            $dates->start->startOfDay()->format("Y-m-d H:i:s"),
+            $dates->end->endOfDay()->format("Y-m-d H:i:s"),
+        ])->get();
+
+        return $events;
     }
 
     public function render()

@@ -45,6 +45,14 @@ class Calendar extends AbstractView
         $this->offsetType = $offsetType;
     }
 
+    public static function getFilteredEventsForDate($events, $date)
+    {
+        return $events->whereBetween("date", [
+            $date->startOfDay()->format("Y-m-d H:i:s"),
+            $date->endOfDay()->format("Y-m-d H:i:s"),
+        ]);
+    }
+
     public function render()
     {
         $this->now = CarbonImmutable::now()->add($this->offset, $this->offsetType);

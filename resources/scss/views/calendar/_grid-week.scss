@@ -1,0 +1,5 @@
+.calendar__grid--week {
+    .calendar__grid-body {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}

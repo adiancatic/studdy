@@ -24,4 +24,63 @@
             @break
     @endswitch
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector(".calendar");
+            let oldCal;
+
+            Livewire.hook("message.received", () => {
+                oldCal = container.querySelector(".calendar__grid").cloneNode(true);
+
+                oldCal.style.position = "absolute";
+                oldCal.style.inset = "0";
+                oldCal.style.top = container.querySelector(".calendar__grid").getBoundingClientRect().top + "px";
+            })
+
+            Livewire.hook("message.processed", () => {
+                let newCal = container.querySelector(".calendar__grid");
+
+                if (oldCal.innerHTML === newCal.innerHTML) return;
+                if (oldCal.classList.toString() !== newCal.classList.toString()) return;
+
+                const lastDateOfCurrentPeriod = oldCal.querySelector(".calendar__cell--last-of-period").getAttribute("date");
+                const firstDateOfNextPeriod = newCal.querySelector(".calendar__cell--first-of-period").getAttribute("date");
+                const newCalIsAfter = Date.parse(lastDateOfCurrentPeriod) < Date.parse(firstDateOfNextPeriod);
+
+                oldCal.classList.add("oldCal");
+                newCal.before(oldCal);
+
+                const moveIn = (negative = false) => {
+                    let val = 30 * (negative ? 1 : -1);
+
+                    return [
+                        { transform: `translate3d(${val}%, 0, 0)`, opacity: 0 },
+                        { transform: `translate3d(0, 0, 0)`, opacity: 1 },
+                    ];
+                };
+
+                const moveOut = (negative = false) => {
+                    let val = 30 * (negative ? -1 : 1);
+
+                    return [
+                        { transform: `translate3d(0, 0, 0)`, opacity: 1 },
+                        { transform: `translate3d(${val}%, 0, 0)`, opacity: 0 },
+                    ];
+                };
+
+                oldCal.getAnimations().forEach(animation => animation.finish());
+                let animation = oldCal.animate(
+                    moveOut(newCalIsAfter),
+                    { duration: 300, easing: "ease-in-out" },
+                );
+                animation.onfinish = () => oldCal.remove();
+
+                newCal.getAnimations().forEach(animation => animation.finish());
+                newCal.animate(
+                    moveIn(newCalIsAfter),
+                    { duration: 300, easing: "ease-in-out" },
+                );
+            })
+        })
+    </script>
 </div>

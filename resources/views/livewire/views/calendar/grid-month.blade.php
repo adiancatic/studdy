@@ -1,10 +1,12 @@
+@php
+    use App\Http\Livewire\Views\Calendar\Calendar;
+
+    $weekdays = \Carbon\Carbon::DAYS_PER_WEEK;
+    $weekday = $now->copy()->startOfWeek()->subDay();
+@endphp
+
 <div class="calendar__grid calendar__grid--month">
     <div class="calendar__grid-header">
-        @php
-            $weekdays = \Carbon\Carbon::DAYS_PER_WEEK;
-            $weekday = $now->copy()->startOfWeek()->subDay();
-        @endphp
-
         @while($weekdays--)
             @php
                 $weekday = $weekday->addDay();
@@ -21,22 +23,26 @@
     </div>
 
     <div class="calendar__grid-body">
-        @foreach($this->getGrid() as $date)
+        @foreach($this->getPeriod() as $date)
             @php
                 $classes = [
                     "calendar__cell",
                     "calendar__cell--today" => $date->isToday(),
-                    "calendar__cell--month-prev" => $date->isBefore($now->firstOfMonth()),
-                    "calendar__cell--month-next" => $date->isAfter($now->lastOfMonth()),
+                    "calendar__cell--first-of-period" => $date->copy()->startOfMonth()->eq($date),
+                    "calendar__cell--last-of-period" => $date->isLastOfMonth(),
+                    "calendar__cell--prev-period" => $date->isBefore($now->firstOfMonth()),
+                    "calendar__cell--next-period" => $date->isAfter($now->lastOfMonth()),
                 ];
             @endphp
 
-            <div @class($classes)>
+            <div @class($classes) date="{{ $date->toDateString() }}">
                 <div class="calendar__cell-header">
                     <span class="calendar__cell-header-date">{{ $date->format("j") }}</span>
                 </div>
                 <div class="calendar__cell-body">
-
+                    @foreach(Calendar::getFilteredEventsForDate($this->getEvents(), $date) as $event)
+                        <span class="event">{{ $event->title }}</span>
+                    @endforeach
                 </div>
             </div>
         @endforeach
