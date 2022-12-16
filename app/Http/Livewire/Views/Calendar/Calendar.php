@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Views\Calendar;
 use App\Http\Livewire\Views\AbstractView;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Cookie;
 
 class Calendar extends AbstractView
 {
@@ -18,7 +19,7 @@ class Calendar extends AbstractView
     public $now;
 
     public $offset = 0;
-    public $offsetType = self::TYPE_MONTH;
+    public $offsetType;
 
     protected $listeners = [
         "setOffset",
@@ -36,13 +37,20 @@ class Calendar extends AbstractView
 
     public function mount()
     {
+        $this->offsetType = Cookie::get("calendar-type", self::TYPE_MONTH);
         $this->now = CarbonImmutable::now();
     }
 
     public function setOffset($offset, $offsetType)
     {
         $this->offset = $offset;
+        $this->setOffsetType($offsetType);
+    }
+
+    protected function setOffsetType($offsetType)
+    {
         $this->offsetType = $offsetType;
+        Cookie::queue("calendar-type", $offsetType, 60 * 24 * 365 * 5);
     }
 
     public static function getFilteredEventsForDate($events, $date)
