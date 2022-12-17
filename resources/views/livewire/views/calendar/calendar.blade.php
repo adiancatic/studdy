@@ -40,8 +40,11 @@
             Livewire.hook("message.processed", () => {
                 let newCal = container.querySelector(".calendar__grid");
 
-                if (oldCal.innerHTML === newCal.innerHTML) return;
                 if (oldCal.classList.toString() !== newCal.classList.toString()) return;
+
+                const firstDateBeforeUpdate = oldCal.querySelector(".calendar__cell").getAttribute("date");
+                const firstDateAfterUpdate = newCal.querySelector(".calendar__cell").getAttribute("date");
+                if (Date.parse(firstDateBeforeUpdate) === Date.parse(firstDateAfterUpdate)) return;
 
                 const lastDateOfCurrentPeriod = oldCal.querySelector(".calendar__cell--last-of-period").getAttribute("date");
                 const firstDateOfNextPeriod = newCal.querySelector(".calendar__cell--first-of-period").getAttribute("date");
