@@ -1,8 +1,10 @@
 import EditorJS from '@editorjs/editorjs';
 
 document.addEventListener("livewire:load", () => {
+    if (! document.querySelector("#editorjs")) return;
+
     const editor = new EditorJS({
-        data: JSON.parse(item.content) || {},
+        data: typeof item !== "undefined" ? JSON.parse(item.content) : {},
         onChange: debounce( () => {
             saveData();
         }, 2000),
