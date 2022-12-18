@@ -60,7 +60,7 @@ class Calendar extends AbstractView
 
     public static function getFilteredEventsForDate($events, $date)
     {
-        return $events->whereBetween("date", [
+        return $events->whereBetween("date_start", [
             $date->startOfDay()->format("Y-m-d H:i:s"),
             $date->endOfDay()->format("Y-m-d H:i:s"),
         ]);

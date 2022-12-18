@@ -30,7 +30,7 @@ class GridMonth extends Component
         $dates = $this->getPeriod();
 
         /** @var Event[] $events */
-        $events = \App\Models\Event::whereBetween("date", [
+        $events = \App\Models\Event::whereBetween("date_start", [
             $dates->start->startOfDay()->format("Y-m-d H:i:s"),
             $dates->end->endOfDay()->format("Y-m-d H:i:s"),
         ])->get();
