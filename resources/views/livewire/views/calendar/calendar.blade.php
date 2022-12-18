@@ -53,6 +53,9 @@
                 oldCal.classList.add("oldCal");
                 newCal.before(oldCal);
 
+                oldCal.style.overflow = "hidden";
+                newCal.style.overflow = "hidden";
+
                 const moveIn = (negative = false) => {
                     let val = 30 * (negative ? 1 : -1);
 
@@ -76,7 +79,11 @@
                     moveOut(newCalIsAfter),
                     { duration: 300, easing: "ease-in-out" },
                 );
-                animation.onfinish = () => oldCal.remove();
+                animation.onfinish = () => {
+                    oldCal.remove()
+                    oldCal.style.overflow = null;
+                    newCal.style.overflow = null;
+                };
 
                 newCal.getAnimations().forEach(animation => animation.finish());
                 newCal.animate(
