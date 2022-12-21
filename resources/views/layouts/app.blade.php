@@ -2,11 +2,8 @@
 
 @section('head')
     @livewireStyles
-    @vite([
-        'resources/plugins/fontawesome/css/all.min.css',
-        'resources/scss/app.scss',
-        'resources/js/app.js',
-    ])
+    <link rel="stylesheet" href="{{ mix('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 
 @section('body')
@@ -18,5 +15,6 @@
         </main>
 
         @livewireScripts
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 @endsection
