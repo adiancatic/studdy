@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Views\Calendar;
 use App\Models\Event;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class GridWeek extends Component
@@ -27,10 +28,10 @@ class GridWeek extends Component
         $dates = $this->getPeriod();
 
         /** @var Event[] $events */
-        $events = \App\Models\Event::whereBetween("date_start", [
+        $events = Auth::user()->events->whereBetween("date_start", [
             $dates->start->startOfDay()->format("Y-m-d H:i:s"),
             $dates->end->endOfDay()->format("Y-m-d H:i:s"),
-        ])->get();
+        ]);
 
         return $events;
     }
