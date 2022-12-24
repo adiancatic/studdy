@@ -2,6 +2,7 @@
     $attributes = $attributes
         ->class([
             "modal-dialog",
+            "modal-dialog-scrollable",
             "modal-dialog-centered" => $attributes->has("center"),
 
             "modal-lg" => $attributes->has("size") && $attributes->get("size") === "lg",
