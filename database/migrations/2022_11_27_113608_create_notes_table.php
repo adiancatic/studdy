@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 256);
-            $table->json('content');
+            $table->string('title', 256)->nullable();
+            $table->json('content')->nullable();
             $table->unsignedBigInteger('notebook_id');
             $table->timestamps();
 
