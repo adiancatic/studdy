@@ -1,6 +1,14 @@
-import 'bootstrap';
 import 'livewire-sortable';
+import './bootstrap';
 import './editor';
+
+document.addEventListener("DOMContentLoaded",  () => {
+    handleModal()
+})
+
+window.openModal = function openModal(view, params = null) {
+    Livewire.emit("openModal", view, params)
+}
 
 window.editTitle = function editTitle(el) {
     let input = document.createElement("input");
@@ -34,4 +42,17 @@ window.editTitle = function editTitle(el) {
         input.parentNode.replaceChild(el, input);
         input.blur();
     }
+}
+
+function handleModal () {
+    let modalEl
+
+    window.addEventListener("modalRendered", () => {
+        modalEl = document.querySelector("#modal")
+        new bootstrap.Modal(modalEl).show()
+    })
+
+    document.addEventListener("hidden.bs.modal", () => {
+        modalEl.remove()
+    })
 }
