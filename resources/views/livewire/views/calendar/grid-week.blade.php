@@ -105,10 +105,14 @@
                             $offsets[$colCount] = 0;
                         }
 
-                        $multiplier = floor(100 / $colCount);
+                        $multiplier = (int) floor(100 / $colCount);
 
                         $colFrom = ($offsets[$colCount] * $multiplier) + 1;
                         $colTo = $colFrom + $multiplier;
+
+                        if ($colTo === 100) {
+                            $colTo = 101;
+                        }
 
                         $gridColStyle = "grid-column: $colFrom / $colTo;";
                     @endphp
