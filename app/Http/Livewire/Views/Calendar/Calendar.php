@@ -28,6 +28,7 @@ class Calendar extends AbstractView
 
     protected $listeners = [
         "setOffset",
+        "refresh" => '$refresh',
     ];
 
     public function getIcon()

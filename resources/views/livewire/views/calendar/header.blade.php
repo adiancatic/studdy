@@ -5,6 +5,10 @@
     <h4>{{ $now->monthName }} {{ $now->year }}</h4>
 
     <div class="calendar__actions">
+        <button type="button" class="btn btn-md btn-default" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ __("Import calendar") }}" onclick="openModal('views.calendar.modal.import-calendar-modal')">
+            <i class="far fa-calendar-circle-plus"></i>
+        </button>
+
         <x-dropdown align="end">
             <x-slot:toggle class="btn btn-md btn-default">
                 <span>{{ __(Calendar::TYPES[$offsetType]) }}</span><i class="far fa-chevron-down"></i>

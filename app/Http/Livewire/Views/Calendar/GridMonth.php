@@ -16,6 +16,10 @@ class GridMonth extends Component
     public $offset;
     public $offsetType = Calendar::TYPE_MONTH;
 
+    protected $listeners = [
+        "refresh" => '$refresh',
+    ];
+
     public function getPeriod()
     {
         $firstWeekDayOfMonth = $this->now->firstOfMonth()->dayOfWeekIso;

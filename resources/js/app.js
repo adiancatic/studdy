@@ -3,11 +3,17 @@ import './bootstrap';
 import './editor';
 
 document.addEventListener("DOMContentLoaded",  () => {
+    initTooltips()
     handleModal()
 })
 
 window.openModal = function openModal(view, params = null) {
     Livewire.emit("openModal", view, params)
+}
+
+window.closeModal = function closeModal() {
+    let modal = document.querySelector("#modal");
+    bootstrap.Modal.getInstance(modal).hide()
 }
 
 window.editTitle = function editTitle(el) {
@@ -52,7 +58,16 @@ function handleModal () {
         new bootstrap.Modal(modalEl).show()
     })
 
+    document.addEventListener("closeModal", () => {
+        closeModal()
+    })
+
     document.addEventListener("hidden.bs.modal", () => {
         modalEl.remove()
     })
+}
+
+function initTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

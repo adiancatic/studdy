@@ -14,6 +14,16 @@ class Event extends Model
         "date_end" => "datetime",
     ];
 
+    protected $fillable = [
+        "title",
+        "date_start",
+        "date_end",
+        "user_id",
+        "type",
+        "created_at",
+        "updated_at",
+    ];
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);

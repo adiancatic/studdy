@@ -15,6 +15,10 @@ class GridWeek extends Component
     public $offset;
     public $offsetType = Calendar::TYPE_WEEK;
 
+    protected $listeners = [
+        "refresh" => '$refresh',
+    ];
+
     public function getPeriod()
     {
         $start = $this->now->startOfWeek(Carbon::MONDAY);
