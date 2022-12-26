@@ -50,22 +50,62 @@
                     "calendar__cell--first-of-period" => $date->isMonday(),
                     "calendar__cell--last-of-period" => $date->isSunday(),
                 ];
+
+                /** @var \App\Models\Event[] $events */
+                $events = Calendar::getFilteredEventsForDate($this->getEvents(), $date);
+                $offsets = [];
             @endphp
 
             <div @class($classes) date="{{ $date->toDateString() }}">
-                @foreach(Calendar::getFilteredEventsForDate($this->getEvents(), $date) as $event)
+                @foreach($events as $event)
                     @php
                         $timeStart = \Carbon\Carbon::create($event->date_start);
-                        $quartersSinceMidnight = $timeStart->secondsSinceMidnight() / 60 / 15;
-
                         $timeEnd = \Carbon\Carbon::create($event->date_end);
+
+                        /*
+                         * Rows logic
+                         */
+                        $quartersSinceMidnight = $timeStart->secondsSinceMidnight() / 60 / 15;
                         $quartersSinceStart = $timeEnd->diffInMinutes($timeStart) / 15;
 
                         $timeOffsetStart = $quartersSinceMidnight;
                         $timeOffsetEnd = $quartersSinceMidnight + $quartersSinceStart;
+
+                        $gridRowStyle = "grid-row: " . ($timeOffsetStart + 1) . " / " . ($timeOffsetEnd + 1) . ";";
+
+                        /*
+                         * Cols logic
+                         */
+                        $overlapsStart = $events->whereBetween("date_start", [$timeStart, $timeEnd->copy()->subSecond()]);
+                        $overlapsEnd = $events->whereBetween("date_end", [$timeStart->copy()->addSecond(), $timeEnd]);
+
+                        $overlapsOutsideStart = $events->where("date_start", "<=", $timeStart);
+                        $overlapsOutsideEnd = $events->where("date_end", ">=", $timeEnd);
+                        $overlapsOutside = $overlapsOutsideStart->intersect($overlapsOutsideEnd);
+
+                        $overlaps = $overlapsOutside->merge(
+                            $overlapsStart->merge($overlapsEnd)
+                        );
+
+                        $colCount = $overlaps->count();
+
+                        $offsets[$colCount] = array_key_exists($colCount, $offsets)
+                            ? $offsets[$colCount] + 1
+                            : 0;
+
+                        if ($colCount === $offsets[$colCount]) {
+                            $offsets[$colCount] = 0;
+                        }
+
+                        $multiplier = floor(100 / $colCount);
+
+                        $colFrom = ($offsets[$colCount] * $multiplier) + 1;
+                        $colTo = $colFrom + $multiplier;
+
+                        $gridColStyle = "grid-column: $colFrom / $colTo;";
                     @endphp
 
-                    <div class="event" style="grid-row: {{ $timeOffsetStart + 1 }} / {{ $timeOffsetEnd + 1 }}">
+                    <div class="event" style="{{ "$gridRowStyle $gridColStyle" }}">
                         <div class="event-title">{{ $event->title }}</div>
                         <i class="event-time">{{ $timeStart->format("H:i") }} - {{ $timeEnd->format("H:i") }}</i>
                     </div>

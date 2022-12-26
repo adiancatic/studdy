@@ -64,7 +64,7 @@ class Calendar extends AbstractView
         return $events->whereBetween("date_start", [
             $date->startOfDay()->format("Y-m-d H:i:s"),
             $date->endOfDay()->format("Y-m-d H:i:s"),
-        ]);
+        ])->sortBy("date_start");
     }
 
     public function render()
