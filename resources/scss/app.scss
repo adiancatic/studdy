@@ -127,8 +127,17 @@ body {
     }
 }
 
+code {
+    background-color: $c-blue-100;
+    border: 1px solid $c-blue-200;
+    color: $c-blue-800;
+    border-radius: 0.375rem;
+    padding: 0 0.125rem;
+}
+
 @import 'basic/dropdown';
 @import 'basic/button';
+@import 'basic/form';
 
 @import 'navigation';
 @import 'componentns/user-avatar';
