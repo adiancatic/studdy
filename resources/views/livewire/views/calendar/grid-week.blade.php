@@ -22,18 +22,17 @@
         @endwhile
     </div>
 
-    <div class="calendar__grid-body">
-        <div class="grid-bg">
+    <div class="calendar__grid-body grid-cols">
+        <div class="grid-bg grid-cols">
             @foreach($this->getPeriod() as $date)
                 @php $dateLoop = $loop @endphp
                 <div class="cell cell--day">
-                    @foreach(range(0, 23) as $hour)
+                    <div></div>
+                    @foreach([...(range(0, 23)), 0] as $hour)
                         <div class="cell cell--hour">
                             @if($dateLoop->first)<span class="label-hour">{{ $hour }}:00</span>@endif
                             @foreach(range(0, 3) as $quarter)
-                                <div class="cell cell--quarter">
-
-                                </div>
+                                <div class="cell cell--quarter"></div>
                             @endforeach
                         </div>
                     @endforeach
@@ -57,6 +56,15 @@
             @endphp
 
             <div @class($classes) date="{{ $date->toDateString() }}">
+                @if($date->isToday())
+                    <div class="time-line grid-cols">
+                        <span class="time-wrapper">
+                            <span class="time">00:00</span>
+                        </span>
+                        <span class="line" style="grid-column: {{ $date->dayOfWeek }}"></span>
+                    </div>
+                @endif
+
                 @foreach($events as $event)
                     @php
                         $timeStart = \Carbon\Carbon::create($event->date_start);
@@ -71,7 +79,7 @@
                         $timeOffsetStart = $quartersSinceMidnight;
                         $timeOffsetEnd = $quartersSinceMidnight + $quartersSinceStart;
 
-                        $gridRowStyle = "grid-row: " . ($timeOffsetStart + 1) . " / " . ($timeOffsetEnd + 1) . ";";
+                        $gridRowStyle = "grid-row: " . ($timeOffsetStart + 2) . " / " . ($timeOffsetEnd + 2) . ";";
 
                         /*
                          * Cols logic
@@ -115,6 +123,59 @@
     </div>
 
     <script>
+        const timeline = () => {
+            let calendar = document.querySelector(".calendar__grid--week")
+            if (! calendar) return
+
+            let calendarBody = calendar.querySelector(".calendar__grid-body")
+            if (! calendarBody) return
+
+            let timeline = calendarBody.querySelector(".time-line")
+            if (! timeline) return
+
+            timeline.style.opacity = "1"
+
+            const calendarHeight = calendarBody.getBoundingClientRect().height - (2 * 16)
+            const minutesInDay = 24 * 60
+
+            const loop = (loadOffset = null) => {
+                let now = new Date()
+
+                let then = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0)
+
+                if (! loadOffset) {
+                    loadOffset = now.getSeconds() * 1000
+                }
+
+                let diff = new Date(now.getTime() - then.getTime())
+                diff.setHours(diff.getHours() - 1)
+
+                const minutesSinceMidnight = diff.getHours() * 60 + diff.getMinutes()
+                const offsetUnit = calendarHeight / minutesInDay
+                const offset = offsetUnit * minutesSinceMidnight + 16
+
+                timeline.querySelector(".time").innerHTML = `${now.getHours()}:${now.getMinutes()}`
+                timeline.style.top = `${Math.floor(offset)}px`
+
+                setTimeout(() => {
+                    loop(0)
+                }, 1000 * 60 - loadOffset)
+            }
+
+            loop()
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            timeline()
+
+            Livewire.hook("message.processed", (e) => {
+                const calendar = document.querySelector(".calendar")
+                if (!calendar || calendar !== e.component.el) return
+
+                timeline()
+            })
+        })
+
         // document.addEventListener("DOMContentLoaded", () => {
         //     let event = document.querySelector(".event")
         //
