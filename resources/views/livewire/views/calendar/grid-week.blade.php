@@ -61,7 +61,7 @@
                         <span class="time-wrapper">
                             <span class="time">00:00</span>
                         </span>
-                        <span class="line" style="grid-column: {{ $date->dayOfWeek }}"></span>
+                        <span class="line" style="grid-column: {{ $date->dayOfWeekIso }}"></span>
                     </div>
                 @endif
 
