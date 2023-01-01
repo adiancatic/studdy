@@ -33,11 +33,10 @@ window.editTitle = function editTitle(el) {
     });
 
     const save = () => {
-        const item = input.closest("[wire\\:id]");
-        const itemId = item.getAttribute("data-id");
+        const item = input.closest("[wire\\:id]").getAttribute("wire:id");
 
         if (el.innerText !== input.value) {
-            Livewire.emit("updateItem", itemId, {"title": input.value});
+            Livewire.find(item).update({"title": input.value})
         }
 
         el.innerText = input.value;

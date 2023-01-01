@@ -15,8 +15,6 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
     public $notes;
 
     protected $listeners = [
-        "deleteItem",
-        "updateItem",
         "refresh" => '$refresh',
     ];
 
@@ -42,18 +40,6 @@ class Notebook extends \App\Http\Livewire\Views\AbstractView
         ]);
 
         $this->notes->push($newNote);
-    }
-
-    public function deleteItem(Note $note)
-    {
-        $this->notes = $this->notes->diff([$note]);
-        $note->delete();
-    }
-
-    public function updateItem(Note $note, $data)
-    {
-        $note->fill($data)->save();
-        $this->emit("refresh");
     }
 
     public function updateOrder($items)

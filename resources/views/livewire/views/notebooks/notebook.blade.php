@@ -14,15 +14,8 @@
             </div>
 
             <div wire:sortable="updateOrder" class="item-list__body">
-                @foreach($notes as $index => $note)
-                    <livewire:components.list-item
-                        :index="$loop->iteration"
-                        :itemId="$note->id"
-                        :title="$note->title"
-                        :url="$note->url"
-                        :date="$note->created_at->format('d M Y')"
-                        :author="$note->author"
-                        wire:key="{{ $note->id }}" />
+                @foreach($notes as $note)
+                    <livewire:components.list-item :index="$loop->iteration" :item="$note" :isSortable="true" wire:key="{{ $note->id }}" />
                 @endforeach
 
                 <div class="item-list__item">
@@ -31,7 +24,6 @@
                 </div>
             </div>
         @else
-
             @php
                 ob_start();
                 @endphp
