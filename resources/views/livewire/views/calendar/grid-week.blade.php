@@ -158,7 +158,11 @@
                 const offsetUnit = calendarHeight / minutesInDay
                 const offset = offsetUnit * minutesSinceMidnight + 16
 
-                timeline.querySelector(".time").innerHTML = `${now.getHours()}:${now.getMinutes()}`
+                let nowHours = now.getHours();
+                let nowMinutes = now.getMinutes();
+                if (nowMinutes < 10) nowMinutes = "0" + nowMinutes;
+
+                timeline.querySelector(".time").innerHTML = `${nowHours}:${nowMinutes}`
                 timeline.style.top = `${Math.floor(offset)}px`
 
                 setTimeout(() => {
