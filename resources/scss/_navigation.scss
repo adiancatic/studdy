@@ -1,5 +1,6 @@
 .nav-sidebar {
     padding: 1.5rem 1.25rem;
+    z-index: $z-index-sidebar;
 
     .nav-sidebar__header {
         display: flex;

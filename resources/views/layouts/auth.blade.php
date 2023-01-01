@@ -2,7 +2,7 @@
 
 @section('head')
     <!-- Scripts -->
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 
 @section('body')
@@ -18,5 +18,7 @@
                 @yield('content')
             </div>
         </div>
+
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 @endsection

@@ -1,0 +1,11 @@
+.calendar__cell--prev-period,
+.calendar__cell--next-period {
+    background-color: $c-gray-100;
+}
+
+.calendar__grid--month {
+    .calendar__grid-body {
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+}

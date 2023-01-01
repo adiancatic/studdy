@@ -33,6 +33,18 @@ $c-blue-700: #2651D0;
 $c-blue-800: #2342A9;
 $c-blue-900: #243B85;
 
+$c-red-50: #FCF2F2;
+$c-red-100: #F9E3E2;
+$c-red-200: #F6CCCB;
+$c-red-300: #F1A9A7;
+$c-red-400: #E87975;
+$c-red-500: #DE524C;
+$c-red-600: #CB3A31;
+$c-red-700: #AB2E26;
+$c-red-800: #8D2822;
+$c-red-900: #752522;
+
+
 
 
 $fw-regular: 400;
@@ -40,3 +52,27 @@ $fw-semibold: 600;
 
 $tr-default: all 1s ease;
 $tr-quick: all 0.25s ease;
+
+
+
+$z-index-sidebar: 1000;
+
+/*
+ * BS5 - Alert
+ */
+$alert-border-radius: 0.5rem;
+
+/*
+ * BS5 - Modal
+ */
+$modal-backdrop-bg: #fff;
+$modal-backdrop-opacity: 0.8;
+$modal-content-border-color: $c-gray-200;
+$modal-content-border-radius: 1rem;
+
+$modal-fade-transform: translateY(1rem);
+
+$modal-header-border-color: $c-gray-200;
+$modal-header-padding: 1rem 1.5rem;
+$modal-inner-padding: 1.5rem;
+$modal-footer-border-color: $c-gray-200;

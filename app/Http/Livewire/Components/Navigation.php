@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Components;
 
 use App\Helpers\DI;
+use App\Http\Livewire\Views\Calendar\Calendar;
 use App\Http\Livewire\Views\Dashboard;
 use App\Http\Livewire\Views\Notebooks\NotebookList;
 use Illuminate\Support\Facades\Request;
@@ -13,11 +14,13 @@ class Navigation extends Component
     public const VIEWS = [
         Dashboard::class,
         NotebookList::class,
+        Calendar::class,
     ];
 
     public const TEMP_URL_MAP = [
         Dashboard::class => 'dashboard',
         NotebookList::class => 'notebooks',
+        Calendar::class => 'calendar',
     ];
 
     protected $activeView;

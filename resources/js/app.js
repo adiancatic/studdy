@@ -1,6 +1,20 @@
-import 'bootstrap';
 import 'livewire-sortable';
+import './bootstrap';
 import './editor';
+
+document.addEventListener("DOMContentLoaded",  () => {
+    initTooltips()
+    handleModal()
+})
+
+window.openModal = function openModal(view, params = null) {
+    Livewire.emit("openModal", view, params)
+}
+
+window.closeModal = function closeModal() {
+    let modal = document.querySelector("#modal");
+    bootstrap.Modal.getInstance(modal).hide()
+}
 
 window.editTitle = function editTitle(el) {
     let input = document.createElement("input");
@@ -34,4 +48,26 @@ window.editTitle = function editTitle(el) {
         input.parentNode.replaceChild(el, input);
         input.blur();
     }
+}
+
+function handleModal () {
+    let modalEl
+
+    window.addEventListener("modalRendered", () => {
+        modalEl = document.querySelector("#modal")
+        new bootstrap.Modal(modalEl).show()
+    })
+
+    document.addEventListener("closeModal", () => {
+        closeModal()
+    })
+
+    document.addEventListener("hidden.bs.modal", () => {
+        modalEl.remove()
+    })
+}
+
+function initTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

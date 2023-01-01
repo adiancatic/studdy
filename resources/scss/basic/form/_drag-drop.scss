@@ -1,0 +1,82 @@
+.drag-n-drop {
+    input {
+        display: none;
+    }
+
+    #drop-area {
+        border-radius: 0.5rem;
+        border: 2px dashed $c-gray-300;
+        padding: 2rem 1rem;
+        transition: $tr-quick;
+
+        .content {
+            pointer-events: none;
+        }
+
+        .content--default {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .content__icon {
+                font-size: 2rem;
+                color: $c-gray-500;
+            }
+
+            .content__title {
+                font-size: 1.25rem;
+                color: $c-gray-900;
+                margin: 0.5rem 0 0;
+            }
+
+            .content__desc {
+                font-size: 0.875rem;
+                color: $c-gray-400;
+                margin: 0.25rem 0 0;
+            }
+        }
+
+        &.is-highlighted {
+            border-color: $c-blue-500;
+        }
+
+        &:hover {
+            background-color: $c-gray-50;
+            border-color: $c-gray-400;
+            cursor: pointer;
+        }
+    }
+
+    .upload-progress {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .upload-progress__percentage {
+            font-size: 2rem;
+            color: $c-gray-900;
+        }
+
+        .upload-progress__line {
+            width: 20rem;
+            height: 0.25rem;
+            border-radius: 20rem;
+            background-color: $c-gray-200;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0.5rem;
+
+        }
+
+        .upload-progress__line-inner {
+            position: absolute;
+            inset: 0;
+            border-radius: 20rem;
+            background-image: linear-gradient(90deg, $c-blue-400 0%, $c-purple-600 100%);
+        }
+    }
+
+    .alert {
+        margin: 1rem 0 0;
+    }
+}

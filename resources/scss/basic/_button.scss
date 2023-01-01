@@ -1,9 +1,21 @@
 .btn {
     display: inline-flex;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     line-height: 1;
     text-decoration: none;
-    box-shadow: 0 2px 4px -2px rgba($c-gray-900, 0.16);
+
+    i:first-child:not(:last-child) {
+        margin-right: 0.5rem;
+    }
+
+    i:last-child:not(:first-child) {
+        margin-left: 0.5rem;
+    }
+}
+
+.btn-md {
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.5rem;
 }
 
 .btn-sm {
@@ -24,13 +36,12 @@
     background-color: $c-gray-100;
     border: 1px solid $c-gray-200;
 
-    i {
-        margin-right: 0.5rem;
-    }
-
+    &.btn.show,
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    &:first-child:active,
+    &:not(.btn-check) + .btn:active {
         color: $c-purple-500;
         border-color: $c-purple-300;
         background-color: $c-purple-50;
