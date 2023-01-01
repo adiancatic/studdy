@@ -16,7 +16,7 @@
 
             <x-dropdown.item type="action">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $index }}">
-                    <i class="fas fa-fw fa-trash"></i>{{ __("Delete") }}
+                    <i class="far fa-fw fa-trash"></i>{{ __("Delete") }}
                 </a>
             </x-dropdown.item>
         </x-dropdown>
