@@ -1,0 +1,66 @@
+.form-icon-picker {
+
+    .dropdown-menu {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 0;
+        max-width: 20rem;
+        max-height: 20rem;
+        overflow: auto;
+
+        &.show {
+            display: flex;
+        }
+    }
+
+    .icon-search {
+        flex: 100%;
+        padding: 0.5rem;
+        background-color: #fff;
+        position: sticky;
+        top: 0;
+
+        input {
+            width: 100%;
+            background-color: $c-gray-100;
+            padding: 0 0.75rem;
+            border: 0;
+            border-radius: 0.25rem;
+            height: 2.5rem;
+            outline: 0;
+        }
+    }
+
+    .icon-list {
+        padding: 0.5rem;
+
+        button {
+            flex: 1;
+            flex-grow: 0;
+            border: 1px solid transparent;
+            border-radius: 0.25rem;
+            background: none;
+            color: $c-gray-500;
+            padding: 0.5rem;
+
+            &:hover {
+                border-color: $c-gray-200;
+                background-color: $c-gray-100;
+                color: $c-gray-600;
+            }
+
+            &.selected {
+                border-color: $c-purple-200;
+                background-color: $c-purple-50;
+                color: $c-purple-600;
+                &:hover {
+                    background-color: $c-purple-100;
+                }
+            }
+        }
+
+        i {
+            font-size: 1.125rem;
+        }
+    }
+}
