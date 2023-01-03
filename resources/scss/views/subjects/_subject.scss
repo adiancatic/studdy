@@ -1,0 +1,24 @@
+.subject {
+    .subject__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin: 3rem 0 4rem;
+    }
+
+    .subject__info {
+        display: flex;
+        align-items: baseline;
+        color: $c-gray-900;
+
+        i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: $c-gray-500;
+        }
+    }
+
+    .subject__title {
+        margin: 0;
+    }
+}

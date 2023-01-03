@@ -34,6 +34,15 @@ body {
     }
 }
 
+[class*="col"] {
+    display: flex;
+    flex-direction: column;
+}
+
+.view-title {
+    margin: 3rem 0 2.5rem;
+}
+
 .auth-view {
     height: 100vh;
     display: flex;
@@ -146,5 +155,9 @@ code {
 @import 'componentns/modal';
 @import 'componentns/notebooks-list';
 @import 'componentns/note';
+@import 'componentns/subject-card';
+@import 'componentns/notebook-preview';
 
+@import 'views/subjects/subject';
+@import 'views/subjects/subject-list';
 @import 'views/calendar/calendar';
