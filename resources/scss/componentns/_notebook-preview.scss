@@ -1,0 +1,14 @@
+.notebook-preview {
+    .notebook-preview__header {
+        display: flex;
+        column-gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .notebook-preview__body {
+        margin-top: 1rem;
+        .item-list__item:first-child {
+            border-top: 1px solid $c-gray-200;
+        }
+    }
+}
