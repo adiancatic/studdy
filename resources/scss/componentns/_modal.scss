@@ -1,5 +1,14 @@
 .modal-content {
     box-shadow: 0 1.5rem 5rem -1.5rem rgba(#03061e, 0.16);
+
+    .form-icon-picker {
+        .dropdown-menu {
+            &.show {
+                position: relative !important;
+                margin-top: 0.25rem !important;
+            }
+        }
+    }
 }
 
 .modal-footer {
