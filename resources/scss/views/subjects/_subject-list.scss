@@ -1,0 +1,12 @@
+.subject-list {
+    .subject-list__header {
+        margin: 3rem 0;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+
+    .subject-list__title {
+        margin: 0;
+    }
+}
