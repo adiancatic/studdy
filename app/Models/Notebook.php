@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Notebook extends Model
 {
     use HasFactory;
+
+    protected function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "/notebooks/{$this->id}"
+        );
+    }
 
     public function notes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
