@@ -28,6 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', \App\Http\Livewire\Views\Dashboard::class);
 
     /*
+     * Subjects
+     */
+    Route::get('/subjects', \App\Http\Livewire\Views\Subjects\SubjectList::class);
+    Route::get('/subjects/{subjectId}', \App\Http\Livewire\Views\Subjects\Subject::class);
+
+    /*
      * Notebooks
      */
     Route::get('/notebooks', \App\Http\Livewire\Views\Notebooks\NotebookList::class);

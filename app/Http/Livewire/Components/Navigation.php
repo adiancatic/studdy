@@ -6,6 +6,7 @@ use App\Helpers\DI;
 use App\Http\Livewire\Views\Calendar\Calendar;
 use App\Http\Livewire\Views\Dashboard;
 use App\Http\Livewire\Views\Notebooks\NotebookList;
+use App\Http\Livewire\Views\Subjects\SubjectList;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 
@@ -13,12 +14,14 @@ class Navigation extends Component
 {
     public const VIEWS = [
         Dashboard::class,
+        SubjectList::class,
         NotebookList::class,
         Calendar::class,
     ];
 
     public const TEMP_URL_MAP = [
         Dashboard::class => 'dashboard',
+        SubjectList::class => 'subjects',
         NotebookList::class => 'notebooks',
         Calendar::class => 'calendar',
     ];

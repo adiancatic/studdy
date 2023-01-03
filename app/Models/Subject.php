@@ -20,6 +20,11 @@ class Subject extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function notebooks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Notebook::class);
+    }
+
     public function save(array $options = [])
     {
         if (! $this->user_id) {

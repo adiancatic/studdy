@@ -17,6 +17,11 @@ class Notebook extends Model
         );
     }
 
+    public function subject(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
     public function notes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Note::class);
