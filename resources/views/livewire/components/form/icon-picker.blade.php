@@ -30,24 +30,22 @@
     </x-dropdown>
 
     <script>
-        document.addEventListener("livewire:load", () => {
-            let iconPicker = document.querySelector(".form-icon-picker");
+        let iconPicker = document.querySelector(".form-icon-picker");
 
-            let observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        @this.loadIcons()
-                    }
-                })
-            }, {
-                root: iconPicker.querySelector(".dropdown-menu"),
-                rootMargin: '0px',
-                threshold: 1,
+        let observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    @this.loadIcons()
+                }
             })
-
-            observer.observe(
-                iconPicker.querySelector(".load-more")
-            )
+        }, {
+            root: iconPicker.querySelector(".dropdown-menu"),
+            rootMargin: '0px',
+            threshold: 1,
         })
+
+        observer.observe(
+            iconPicker.querySelector(".load-more")
+        )
     </script>
 </div>
