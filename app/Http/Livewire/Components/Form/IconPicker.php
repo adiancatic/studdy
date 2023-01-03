@@ -4631,11 +4631,13 @@ class IconPicker extends Component
     public $search;
     public $offset;
 
-    public function mount()
+    public function mount($icon)
     {
         $this->icons = collect();
         $this->search = null;
         $this->offset = 0;
+
+        $this->icon = $icon ?: null;
 
         $this->loadIcons();
     }
