@@ -3,14 +3,7 @@
     font-size: 0.875rem;
     line-height: 1;
     text-decoration: none;
-
-    i:first-child:not(:last-child) {
-        margin-right: 0.5rem;
-    }
-
-    i:last-child:not(:first-child) {
-        margin-left: 0.5rem;
-    }
+    column-gap: 0.5rem;
 }
 
 .btn-md {
@@ -50,7 +43,7 @@
 
 .btn-blank {
     color: $c-gray-900;
-    background-color: $c-gray-100;
+    background-color: transparent;
     padding: 0.5rem;
     box-shadow: none;
     border: 0;
