@@ -29,6 +29,11 @@ class ModelComponent extends Component
         }
     }
 
+    public function emittedData($data)
+    {
+        $this->model->fill($data);
+    }
+
     public function validateAndSave()
     {
         $this->validate();
@@ -39,11 +44,6 @@ class ModelComponent extends Component
     {
         $this->model->save();
         $this->emitUp("refresh");
-    }
-
-    public function emittedData($data)
-    {
-        $this->model->fill($data);
     }
 
     public function delete()
