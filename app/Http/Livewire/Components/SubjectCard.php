@@ -2,13 +2,12 @@
 
 namespace App\Http\Livewire\Components;
 
+use App\Http\Livewire\ModelComponent;
 use App\Models\Subject;
-use Livewire\Component;
 
-class SubjectCard extends Component
+class SubjectCard extends ModelComponent
 {
-    /** @var Subject */
-    public $subject;
+    const MODEL = Subject::class;
 
     public function render()
     {
