@@ -46,6 +46,14 @@ class ModelComponent extends Component
         $this->emitUp("refresh");
     }
 
+    public function confirmAndDelete()
+    {
+        $this->emit("openModal", "components.modal.confirm-delete", [
+            "model" => $this->model::class,
+            "id" => $this->model->id,
+        ]);
+    }
+
     public function delete()
     {
         $this->model->delete();
