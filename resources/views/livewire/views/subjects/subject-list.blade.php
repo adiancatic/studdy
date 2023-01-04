@@ -24,7 +24,7 @@
             <div class="row">
                 @foreach($subjects as $subject)
                     <div class="col-4">
-                        <livewire:components.subject-card :subject="$subject" wire:key="{{ $subject->id }}" />
+                        <livewire:components.subject-card :model="$subject" wire:key="{{ $subject->id }}" />
                     </div>
                 @endforeach
             </div>

@@ -13,6 +13,7 @@ class SubjectList extends AbstractView
     protected const TITLE = "Subjects";
     public const ICON = "bookmark";
 
+    /** @var \App\Models\Subject[] */
     public $subjects;
 
     protected $listeners = [
