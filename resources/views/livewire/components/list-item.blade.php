@@ -1,11 +1,11 @@
 @php
     $titleClasses = [
         "item-list__item-title",
-        "is-untitled" => $item->title === __("Untitled"),
+        "is-untitled" => $model->title === __("Untitled"),
     ];
 @endphp
 
-<div class="item-list__item" data-id="{{ $item->id }}" @if($isSortable) wire:sortable.item="{{ $item->id }}" @endif>
+<div class="item-list__item" data-id="{{ $model->id }}" @if($isSortable) wire:sortable.item="{{ $model->id }}" @endif>
     @if($isSortable)
         <span class="item-list__item-handle" wire:sortable.handle></span>
     @endif
@@ -26,19 +26,19 @@
     </div>
 
     <div class="item-list__item-title-container">
-        <span @class($titleClasses) onclick="editTitle(this)">{{ $item->title }}</span>
-        <a class="btn btn-default btn-xs item-list__item-cta" href="{{ $item->url }}">{{ __("Open") }}</a>
+        <span @class($titleClasses) onclick="editTitle(this)">{{ $model->title }}</span>
+        <a class="btn btn-default btn-xs item-list__item-cta" href="{{ $model->url }}">{{ __("Open") }}</a>
     </div>
 
-    <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $item->created_at->format('d M Y') }}</span>
+    <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $model->created_at->format('d M Y') }}</span>
 
-    <span class="item-list__item-author">{{ $item->author }}</span>
+    <span class="item-list__item-author">{{ $model->author }}</span>
 
     <div wire:ignore.self class="modal fade" id="deleteModal-{{ $index }}" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete <strong>{{ $item->title }}</strong>?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete <strong>{{ $model->title }}</strong>?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

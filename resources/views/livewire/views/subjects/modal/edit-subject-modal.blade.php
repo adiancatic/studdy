@@ -1,20 +1,24 @@
 <x-modal.modal center size="lg">
     <x-slot name="header">
-        <h1 class="modal-title fs-5">{{ $subject->title ?: __("Add subject") }}</h1>
+        <h1 class="modal-title fs-5" wire:ignore>{{ $model->title ?: __("Add subject") }}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </x-slot>
 
-    <form id="edit-subject-modal-form" wire:submit.prevent="save(Object.fromEntries(new FormData($event.target)))">
-        @if($subject->id)
-            <input type="hidden" name="id" value="{{ $subject->id }}">
+    <form id="edit-subject-modal-form" wire:submit.prevent="validateAndSave(Object.fromEntries(new FormData($event.target)))">
+        @if($model->id)
+            <input type="hidden" name="id" value="{{ $model->id }}">
         @endif
 
         <div class="row mb-4">
             <label class="form-label col-4">{{ __("Title") }}</label>
             <div class="col-8">
-                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $subject->title) }}" required autofocus>
-
-                @error('title')
+                <input type="text"
+                       wire:model.lazy="model.title"
+                       class="form-control @error('model.title') is-invalid @enderror"
+                       required
+                       autofocus
+                >
+                @error('model.title')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
@@ -23,7 +27,7 @@
         <div class="row mb-4">
             <label class="form-label col-4">{{ __("Icon") }}</label>
             <div class="col-8">
-                <livewire:components.form.icon-picker icon="{{ $subject->icon }}" />
+                <livewire:components.form.icon-picker icon="{{ $model->icon }}" />
             </div>
         </div>
 

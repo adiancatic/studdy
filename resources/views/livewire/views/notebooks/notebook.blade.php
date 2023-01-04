@@ -15,7 +15,7 @@
 
             <div wire:sortable="updateOrder" class="item-list__body">
                 @foreach($notes as $note)
-                    <livewire:components.list-item :index="$loop->iteration" :item="$note" :isSortable="true" wire:key="{{ $note->id }}" />
+                    <livewire:components.list-item :index="$loop->iteration" :model="$note" :isSortable="true" wire:key="{{ $note->id }}" />
                 @endforeach
 
                 <div class="item-list__item">

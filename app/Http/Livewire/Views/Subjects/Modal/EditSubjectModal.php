@@ -2,46 +2,22 @@
 
 namespace App\Http\Livewire\Views\Subjects\Modal;
 
+use App\Http\Livewire\ModelComponent;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Validator;
-use Livewire\Component;
 
-class EditSubjectModal extends Component
+class EditSubjectModal extends ModelComponent
 {
-    /** @var Subject */
-    public $subject;
+    protected const MODEL = Subject::class;
 
-    public function mount($params)
+    protected $rules = [
+        "model.title" => "required",
+        "model.icon" => "sometimes",
+    ];
+
+    public function validateAndSave()
     {
-        if (! empty($params["id"])) {
-            $this->subject = Subject::find($params["id"]);
-        }
-
-        if (! $this->subject) {
-            $this->subject = new Subject();
-        }
-    }
-
-    public function save($formData)
-    {
-        $validatedData = Validator::make(
-            [
-                "title" => $formData["title"],
-                "icon" => $formData["icon"],
-            ],
-            [
-                "title" => "required",
-                "icon" => "sometimes",
-            ],
-        )->validate();
-
-        if (! empty($formData["id"])) {
-            Subject::find((int) $formData["id"])
-                ->fill($validatedData)
-                ->save();
-        } else {
-            Subject::create($validatedData);
-        }
+        parent::validateAndSave();
 
         $this->dispatchBrowserEvent("closeModal");
         $this->emit("refresh");

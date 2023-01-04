@@ -2,26 +2,21 @@
 
 namespace App\Http\Livewire\Components;
 
+use App\Http\Livewire\ModelComponent;
+use App\Models\Note;
 use Illuminate\Database\Eloquent\Model;
-use Livewire\Component;
 
-class ListItem extends Component
+class ListItem extends ModelComponent
 {
-    /** @var Model */
-    public $item;
+    const MODEL = Note::class;
+
     public $index;
     public $isSortable = false;
 
     public function update($data)
     {
-        $this->item->fill($data)->save();
-        $this->emitUp("refresh");
-    }
-
-    public function delete()
-    {
-        $this->item->delete();
-        $this->emitUp("refresh");
+        $this->model->fill($data);
+        $this->save();
     }
 
     public function render()

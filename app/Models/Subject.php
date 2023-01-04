@@ -11,6 +11,7 @@ class Subject extends Model
     use HasFactory;
 
     protected $fillable = [
+        "id",
         "title",
         "icon",
     ];
