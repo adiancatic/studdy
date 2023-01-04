@@ -4671,6 +4671,11 @@ class IconPicker extends Component
         $this->icons->push(...$icons);
     }
 
+    public function updatedIcon()
+    {
+        $this->emitUp("emittedData", ["icon" => $this->icon]);
+    }
+
     public function render()
     {
         return view('livewire.components.form.icon-picker');
