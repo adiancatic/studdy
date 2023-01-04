@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Views\Subjects\Modal;
 
 use App\Http\Livewire\ModelComponent;
 use App\Models\Subject;
-use Illuminate\Support\Facades\Validator;
 
 class EditSubjectModal extends ModelComponent
 {
