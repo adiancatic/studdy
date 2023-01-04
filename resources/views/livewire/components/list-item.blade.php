@@ -18,9 +18,9 @@
             </x-slot:toggle>
 
             <x-dropdown.item type="action">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $index }}">
+                <button type="button" wire:click="confirmAndDelete">
                     <i class="far fa-fw fa-trash"></i>{{ __("Delete") }}
-                </a>
+                </button>
             </x-dropdown.item>
         </x-dropdown>
     </div>
@@ -33,18 +33,4 @@
     <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $model->created_at->format('d M Y') }}</span>
 
     <span class="item-list__item-author">{{ $model->author }}</span>
-
-    <div wire:ignore.self class="modal fade" id="deleteModal-{{ $index }}" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete <strong>{{ $model->title }}</strong>?</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="button" wire:click.prevent="delete" data-bs-dismiss="modal" class="btn btn-primary">Yes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
