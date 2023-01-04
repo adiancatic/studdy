@@ -1,9 +1,11 @@
 .btn {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5rem;
     font-size: 0.875rem;
     line-height: 1;
     text-decoration: none;
-    column-gap: 0.5rem;
 }
 
 .btn-md {
@@ -33,8 +35,7 @@
     &:hover,
     &:focus,
     &:active,
-    &:first-child:active,
-    &:not(.btn-check) + .btn:active {
+    &:first-child:active {
         color: $c-purple-500;
         border-color: $c-purple-300;
         background-color: $c-purple-50;
@@ -54,5 +55,21 @@
 
     &:hover {
         background-color: $c-gray-200;
+    }
+}
+
+.btn-danger {
+    background-color: $c-red-50;
+    border: 1px solid $c-red-200;
+    color: $c-red-500;
+
+    &.btn.show,
+    &:hover,
+    &:focus,
+    &:active,
+    &:first-child:active {
+        color: $c-red-500;
+        border-color: $c-red-300;
+        background-color: $c-red-100;
     }
 }
