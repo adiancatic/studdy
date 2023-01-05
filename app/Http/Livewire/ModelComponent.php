@@ -14,6 +14,7 @@ class ModelComponent extends Component
     protected $listeners = [
         "refresh" => '$refresh',
         "emittedData",
+        "delete",
     ];
 
     public function mount($params = null)
@@ -49,13 +50,16 @@ class ModelComponent extends Component
     public function confirmAndDelete()
     {
         $this->emit("openModal", "components.modal.confirm-delete", [
+            "src" => static::class,
             "model" => $this->model::class,
             "id" => $this->model->id,
         ]);
     }
 
-    public function delete()
+    public function delete($id = null)
     {
+        if ($id !== null && $id !== $this->model->id) return;
+
         $this->model->delete();
         $this->emitUp("refresh");
     }
