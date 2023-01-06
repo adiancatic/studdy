@@ -48,7 +48,7 @@ class ModelComponent extends Component
     public function save()
     {
         $this->model->save();
-        $this->emitUp("refresh");
+        $this->emit("refresh");
     }
 
     public function confirmAndDelete()
