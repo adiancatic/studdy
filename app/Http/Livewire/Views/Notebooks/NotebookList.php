@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Views\Notebooks;
 
 use App\Helpers\BreadcrumbTrait;
+use Illuminate\Support\Facades\Auth;
 
 class NotebookList extends \App\Http\Livewire\Views\AbstractView
 {
@@ -14,6 +15,10 @@ class NotebookList extends \App\Http\Livewire\Views\AbstractView
     /** @var \App\Models\Notebook */
     public $notebooks;
 
+    protected $listeners = [
+        "refresh" => '$refresh',
+    ];
+
     public function breadcrumbConf()
     {
         return [
@@ -24,8 +29,7 @@ class NotebookList extends \App\Http\Livewire\Views\AbstractView
 
     public function mount()
     {
-        $this->notebooks = \App\Models\Notebook::all();
-
+        $this->notebooks = Auth::user()->notebooks;
     }
 
     public function render()
