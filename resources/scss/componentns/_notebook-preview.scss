@@ -11,4 +11,9 @@
             border-top: 1px solid $c-gray-200;
         }
     }
+
+    .empty-state--basic {
+        border: 1px solid $c-gray-200;
+        border-radius: 0.5rem;
+    }
 }
