@@ -26,9 +26,9 @@ class EditNotebookModal extends ModelComponent
         return $this->model->subject_id ?: $this->getSubjects()->first()->id;
     }
 
-    public function mount($params = null)
+    public function mount($params = null, $defaults = null)
     {
-        parent::mount($params);
+        parent::mount($params, $defaults);
 
         $this->model->subject_id = $this->getDefaultSubject();
     }
