@@ -8,15 +8,17 @@ class Modal extends Component
 {
     public $view;
     public $params;
+    public $defaults;
 
     protected $listeners = [
         "openModal",
     ];
 
-    public function openModal($view, $params)
+    public function openModal($view, $params = null, $defaults = null)
     {
         $this->view = $view;
         $this->params = $params;
+        $this->defaults = $defaults;
 
         $this->dispatchBrowserEvent("modalRendered");
     }
@@ -30,6 +32,7 @@ class Modal extends Component
                         <livewire:dynamic-component
                             component="{{ $view }}"
                             :params="$params"
+                            :defaults="$defaults"
                             key="{{ uniqid(json_encode($params), true) }}" />
                     </div>
                 @endif

@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded",  () => {
     handleModal()
 })
 
-window.openModal = function openModal(view, params = null) {
-    Livewire.emit("openModal", view, params)
+window.openModal = function openModal(view, params = null, defaults = null) {
+    Livewire.emit("openModal", view, params, defaults)
 }
 
 window.closeModal = function closeModal() {

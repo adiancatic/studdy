@@ -17,7 +17,7 @@ class ModelComponent extends Component
         "delete",
     ];
 
-    public function mount($params = null)
+    public function mount($params = null, $defaults = null)
     {
         if (! $this->model) {
             $this->model = DI::get(static::MODEL);
@@ -27,6 +27,10 @@ class ModelComponent extends Component
             $this->model = $this->model::where(
                 array_map(fn ($key, $val) => [$key, $val], array_keys($params), array_values($params))
             )->first();
+        }
+
+        if ($defaults) {
+            $this->model->fill($defaults);
         }
     }
 
