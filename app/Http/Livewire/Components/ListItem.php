@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Components;
 
 use App\Http\Livewire\ModelComponent;
 use App\Models\Note;
-use Illuminate\Database\Eloquent\Model;
 
 class ListItem extends ModelComponent
 {
