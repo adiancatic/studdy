@@ -10,6 +10,13 @@ class Notebook extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "id",
+        "title",
+        "icon",
+        "subject_id",
+    ];
+
     protected function url(): Attribute
     {
         return Attribute::make(
