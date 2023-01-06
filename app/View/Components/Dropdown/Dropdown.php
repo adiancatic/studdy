@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class Dropdown extends Component
 {
     public string $align;
+    public string $btnGroup;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($align)
+    public function __construct($align, $btnGroup)
     {
         $this->align = $align;
+        $this->btnGroup = $btnGroup;
     }
 
     /**
