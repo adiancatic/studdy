@@ -16,11 +16,15 @@ return new class extends Migration
         Schema::create('notebooks', function (Blueprint $table) {
             $table->id();
             $table->string('title', 256);
-            $table->string('icon', 32);
+            $table->string('icon', 32)->nullable();
             $table->unsignedBigInteger('subject_id');
             $table->timestamps();
 
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects')
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
         });
     }
 

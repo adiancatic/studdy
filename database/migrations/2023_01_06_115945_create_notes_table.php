@@ -17,10 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('title', 256)->nullable();
             $table->json('content')->nullable();
+            $table->integer("order")->nullable();
             $table->unsignedBigInteger('notebook_id');
             $table->timestamps();
 
-            $table->foreign('notebook_id')->references('id')->on('notebooks');
+            $table->foreign('notebook_id')
+                ->references('id')
+                ->on('notebooks')
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
         });
     }
 
