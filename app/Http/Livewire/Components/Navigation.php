@@ -6,6 +6,7 @@ use App\Helpers\DI;
 use App\Http\Livewire\Views\Calendar\Calendar;
 use App\Http\Livewire\Views\Dashboard;
 use App\Http\Livewire\Views\Notebooks\NotebookList;
+use App\Http\Livewire\Views\Quizzes\QuizList;
 use App\Http\Livewire\Views\Subjects\SubjectList;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
@@ -16,6 +17,7 @@ class Navigation extends Component
         Dashboard::class,
         SubjectList::class,
         NotebookList::class,
+        QuizList::class,
         Calendar::class,
     ];
 
@@ -23,6 +25,7 @@ class Navigation extends Component
         Dashboard::class => 'dashboard',
         SubjectList::class => 'subjects',
         NotebookList::class => 'notebooks',
+        QuizList::class => 'quizzes',
         Calendar::class => 'calendar',
     ];
 

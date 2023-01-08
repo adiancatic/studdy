@@ -41,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notebooks/{notebookId}/{noteId}', \App\Http\Livewire\Views\Notebooks\Note::class);
 
     /*
+     * Quizzes
+     */
+    Route::get('/quizzes', \App\Http\Livewire\Views\Quizzes\QuizList::class);
+
+    /*
      * Calendar
      */
     Route::get('/calendar', \App\Http\Livewire\Views\Calendar\Calendar::class);
