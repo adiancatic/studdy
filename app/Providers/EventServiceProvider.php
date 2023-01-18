@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Note;
+use App\Models\Quiz;
 use App\Observers\NoteObserver;
+use App\Observers\QuizObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -30,6 +32,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Note::observe(NoteObserver::class);
+        Quiz::observe(QuizObserver::class);
     }
 
     /**
