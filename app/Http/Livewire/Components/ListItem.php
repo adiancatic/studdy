@@ -11,6 +11,7 @@ class ListItem extends ModelComponent
 
     public $index;
     public $isSortable = false;
+    public $dropdown;
 
     public function update($data)
     {

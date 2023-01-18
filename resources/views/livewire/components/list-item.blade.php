@@ -12,17 +12,21 @@
 
     <div class="item-list__item-actions">
         <span class="item-list__item-index">{{ $index }}</span>
-        <x-dropdown>
-            <x-slot:toggle>
-                <i class="far fa-fw fa-ellipsis-v"></i>
-            </x-slot:toggle>
+        @if($dropdown)
+            {!! $dropdown !!}
+        @else
+            <x-dropdown>
+                <x-slot:toggle>
+                    <i class="far fa-fw fa-ellipsis-v"></i>
+                </x-slot:toggle>
 
-            <x-dropdown.item type="action">
-                <button type="button" wire:click="confirmAndDelete">
-                    <i class="far fa-fw fa-trash"></i>{{ __("Delete") }}
-                </button>
-            </x-dropdown.item>
-        </x-dropdown>
+                <x-dropdown.item type="action">
+                    <button type="button" wire:click="confirmAndDelete">
+                        <i class="far fa-fw fa-trash"></i>{{ __("Delete") }}
+                    </button>
+                </x-dropdown.item>
+            </x-dropdown>
+        @endif
     </div>
 
     <div class="item-list__item-title-container">
