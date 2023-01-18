@@ -29,6 +29,11 @@ class Quiz extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function entries(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(QuizEntry::class);
+    }
+
     public function save(array $options = [])
     {
         if (! $this->user_id) {
