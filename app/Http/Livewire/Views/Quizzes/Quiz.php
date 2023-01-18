@@ -65,7 +65,9 @@ class Quiz extends \App\Http\Livewire\Views\AbstractView
 
     public function finish()
     {
-        // todo
+        $this->emit("openModal", "views.quizzes.modal.finish-quiz-modal", [
+            "id" => $this->quiz->id,
+        ]);
     }
 
     public function render()
