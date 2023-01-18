@@ -39,6 +39,13 @@ class ModelComponent extends Component
         $this->model->fill($data);
     }
 
+    public function edit($modalView)
+    {
+        $this->emit("openModal", $modalView, [
+            "id" => $this->model->id,
+        ]);
+    }
+
     public function validateAndSave()
     {
         $this->validate();
