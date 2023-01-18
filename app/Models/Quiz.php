@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,13 @@ class Quiz extends Model
         "order",
         "note_id",
     ];
+
+    protected function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "/quizzes/{$this->id}"
+        );
+    }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

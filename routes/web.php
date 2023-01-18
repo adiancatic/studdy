@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
      * Quizzes
      */
     Route::get('/quizzes', \App\Http\Livewire\Views\Quizzes\QuizList::class);
+    Route::get('/quizzes/{quizId}', \App\Http\Livewire\Views\Quizzes\Quiz::class);
 
     /*
      * Calendar
