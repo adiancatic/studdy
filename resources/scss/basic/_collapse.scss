@@ -1,0 +1,13 @@
+[data-bs-toggle="collapse"] {
+    margin-bottom: 0.5rem;
+
+    i {
+        transition: $tr-quick;
+    }
+
+    &:not(.collapsed) {
+        i {
+            transform: rotate(180deg);
+        }
+    }
+}

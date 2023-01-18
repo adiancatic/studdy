@@ -34,7 +34,8 @@ body {
     }
 }
 
-[class*="col"] {
+[class="col"],
+[class*="col-"] {
     display: flex;
     flex-direction: column;
 }
@@ -146,6 +147,7 @@ code {
 
 @import 'basic/dropdown';
 @import 'basic/button';
+@import 'basic/collapse';
 @import 'basic/form';
 
 @import 'navigation';
