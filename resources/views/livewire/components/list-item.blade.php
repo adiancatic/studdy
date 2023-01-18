@@ -31,7 +31,9 @@
 
     <div class="item-list__item-title-container">
         <span @class($titleClasses) onclick="editTitle(this)">{{ $model->title }}</span>
-        <a class="btn btn-default btn-xs item-list__item-cta" href="{{ $model->url }}">{{ __("Open") }}</a>
+        @if($showCta)
+            <a class="btn btn-default btn-xs item-list__item-cta" href="{{ $model->url }}">{{ $cta ?: __("Open") }}</a>
+        @endif
     </div>
 
     <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $model->created_at->format('d M Y') }}</span>

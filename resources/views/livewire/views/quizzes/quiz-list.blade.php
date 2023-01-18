@@ -34,7 +34,8 @@
                         </x-dropdown>
                     @endob(dropdown)
 
-                    <livewire:components.list-item :index="$loop->iteration" :model="$quiz" :isSortable="true" :dropdown="$dropdown" wire:key="{{ $quiz->id }}" />
+                    @php($hasEntries = ! $quiz->entries->isEmpty())
+                    <livewire:components.list-item :index="$loop->iteration" :model="$quiz" :isSortable="true" :dropdown="$dropdown" :showCta="$hasEntries" wire:key="{{ $quiz->id }}" />
                 @endforeach
 
                 <div class="item-list__item">
