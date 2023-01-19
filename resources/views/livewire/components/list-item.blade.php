@@ -36,6 +36,12 @@
         @endif
     </div>
 
+    @if($columns)
+        <div class="item-list__item-columns">
+            {!! $columns !!}
+        </div>
+    @endif
+
     <span class="item-list__item-date"><i class="far fa-calendar"></i>{{ $model->created_at->format('d M Y') }}</span>
 
     <span class="item-list__item-author">{{ $model->author }}</span>

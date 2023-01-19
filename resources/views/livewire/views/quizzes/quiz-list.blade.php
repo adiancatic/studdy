@@ -34,8 +34,27 @@
                         </x-dropdown>
                     @endob(dropdown)
 
+                    @ob
+                        <div>
+                            @php($note = \App\Models\Note::find($quiz->note_id))
+                            @php($subject = $note?->notebook?->subject)
+                            @if($subject)
+                                <a href="{{ $note?->url }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ __("Subject") }}">
+                                    <i class="fas fa-{{ $subject->icon }}"></i> {{ $subject->title }}
+                                </a>
+                            @endif
+                        </div>
+                        <div>
+                            @php($logs = $quiz->logs)
+                            @php($rating = $logs->average("rating"))
+                            @if($rating)
+                                <x-progress-line :actual="$rating" max="5" tooltip="Rating" />
+                            @endif
+                        </div>
+                    @endob(columns)
+
                     @php($hasEntries = ! $quiz->entries->isEmpty())
-                    <livewire:components.list-item :index="$loop->iteration" :model="$quiz" :isSortable="true" :dropdown="$dropdown" :showCta="$hasEntries" wire:key="{{ $quiz->id }}" />
+                    <livewire:components.list-item :index="$loop->iteration" :model="$quiz" :isSortable="true" :dropdown="$dropdown" :showCta="$hasEntries" :columns="$columns" wire:key="{{ $quiz->id }}" />
                 @endforeach
 
                 <div class="item-list__item">

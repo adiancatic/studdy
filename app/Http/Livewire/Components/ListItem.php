@@ -14,6 +14,7 @@ class ListItem extends ModelComponent
     public $dropdown;
     public $showCta = true;
     public $cta;
+    public $columns;
 
     public function update($data)
     {

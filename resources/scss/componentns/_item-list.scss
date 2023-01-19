@@ -103,6 +103,20 @@
         }
     }
 
+    .item-list__item-columns {
+        display: flex;
+        flex: 1;
+
+        & > * {
+            flex: 1;
+        }
+
+        a {
+            color: $c-gray-600;
+            text-decoration: none;
+        }
+    }
+
     .item-list__item-date {
         display: flex;
         align-items: baseline;
