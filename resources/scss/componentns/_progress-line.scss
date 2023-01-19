@@ -1,0 +1,30 @@
+.progress-line {
+    display: flex;
+    justify-content: flex-start;
+
+    .progress-line__container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 0.5rem;
+    }
+
+    .progress-line__outer {
+        display: block;
+        position: relative;
+        background-color: $c-gray-200;
+        width: 6rem;
+        height: 0.5rem;
+        border-radius: 5rem;
+    }
+
+    .progress-line__inner {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-image: linear-gradient(270deg, $c-blue-400 0%, $c-blue-600 100%);;
+        border-radius: 5rem;
+    }
+}
