@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Auth;
 
 class Subject extends Model
@@ -32,6 +33,11 @@ class Subject extends Model
     public function notebooks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Notebook::class);
+    }
+
+    public function notes(): HasManyThrough
+    {
+        return $this->hasManyThrough(Note::class, Notebook::class);
     }
 
     public function save(array $options = [])
