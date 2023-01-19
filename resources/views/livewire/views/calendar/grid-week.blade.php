@@ -117,7 +117,7 @@
                         $gridColStyle = "grid-column: $colFrom / $colTo;";
                     @endphp
 
-                    <div class="event" style="{{ "$gridRowStyle $gridColStyle" }}">
+                    <div class="event" style="{{ "$gridRowStyle $gridColStyle" }}" onclick="openModal('views.calendar.modal.edit-event-modal', { 'id' : {{ $event->id }} })">
                         <div class="event-title">{{ $event->title }}</div>
                         <i class="event-time">{{ $timeStart->format("H:i") }} - {{ $timeEnd->format("H:i") }}</i>
                     </div>

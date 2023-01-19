@@ -5,8 +5,12 @@
     <h4>{{ $now->monthName }} {{ $now->year }}</h4>
 
     <div class="calendar__actions">
-        <button type="button" class="btn btn-md btn-default" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ __("Import calendar") }}" onclick="openModal('views.calendar.modal.import-calendar-modal')">
+        <button type="button" class="btn btn-md btn-default" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ __("Add event") }}" onclick="openModal('views.calendar.modal.edit-event-modal')">
             <i class="far fa-calendar-circle-plus"></i>
+        </button>
+
+        <button type="button" class="btn btn-md btn-default" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ __("Import calendar") }}" onclick="openModal('views.calendar.modal.import-calendar-modal')">
+            <i class="far fa-calendar-arrow-up"></i>
         </button>
 
         <x-dropdown align="end">

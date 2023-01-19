@@ -20,6 +20,12 @@
                     <span class="calendar__title">{{ __("Agenda") }}</span>
                     <span class="calendar__weekday-date">{{ $weekday->format("D, d M") }}</span>
                 </div>
+
+                <div class="calendar__cta">
+                    <button type="button" class="btn btn-md btn-default" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ __("Add event") }}" onclick="openModal('views.calendar.modal.edit-event-modal')">
+                        <i class="far fa-calendar-circle-plus"></i>
+                    </button>
+                </div>
             </div>
         @endwhile
     </div>
@@ -119,7 +125,7 @@
                         $gridColStyle = "grid-column: $colFrom / $colTo;";
                     @endphp
 
-                    <div class="event" style="{{ "$gridRowStyle $gridColStyle" }}">
+                    <div class="event" style="{{ "$gridRowStyle $gridColStyle" }}" onclick="openModal('views.calendar.modal.edit-event-modal', { 'id' : {{ $event->id }} })">
                         <div class="event-title">{{ $event->title }}</div>
                         <i class="event-time">{{ $timeStart->format("H:i") }} - {{ $timeEnd->format("H:i") }}</i>
                     </div>

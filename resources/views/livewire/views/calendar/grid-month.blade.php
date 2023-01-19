@@ -41,7 +41,7 @@
                 </div>
                 <div class="calendar__cell-body">
                     @foreach(Calendar::getFilteredEventsForDate($this->getEvents(), $date) as $event)
-                        <span class="event">{{ $event->title }}</span>
+                        <span class="event" onclick="openModal('views.calendar.modal.edit-event-modal', { 'id' : {{ $event->id }} })">{{ $event->title }}</span>
                     @endforeach
                 </div>
             </div>
