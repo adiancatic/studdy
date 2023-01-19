@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('quiz_entries', function (Blueprint $table) {
             $table->id();
             $table->string("question", 256);
-            $table->text("answer");
+            $table->text("answer")->nullable();
             $table->unsignedBigInteger("quiz_id");
             $table->timestamps();
 
