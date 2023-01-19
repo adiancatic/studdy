@@ -22,10 +22,18 @@
                             </x-slot:toggle>
 
                             <x-dropdown.item type="action">
+                                <a href="{{ $quiz->url }}">
+                                    <i class="fas fa-fw fa-play"></i>{{ __("Start") }}
+                                </a>
+                            </x-dropdown.item>
+                            <x-dropdown.item type="action">
                                 <button type="button" wire:click="edit('views.quizzes.modal.edit-quiz-modal')">
                                     <i class="far fa-fw fa-pen"></i>{{ __("Edit") }}
                                 </button>
                             </x-dropdown.item>
+
+                            <x-dropdown.item type="divider" />
+
                             <x-dropdown.item type="action">
                                 <button type="button" wire:click="confirmAndDelete">
                                     <i class="far fa-fw fa-trash"></i>{{ __("Delete") }}
@@ -54,7 +62,15 @@
                     @endob(columns)
 
                     @php($hasEntries = ! $quiz->entries->isEmpty())
-                    <livewire:components.list-item :index="$loop->iteration" :model="$quiz" :isSortable="true" :dropdown="$dropdown" :showCta="$hasEntries" :columns="$columns" wire:key="{{ $quiz->id }}" />
+                    <livewire:components.list-item
+                        :index="$loop->iteration"
+                        :model="$quiz"
+                        :isSortable="true"
+                        :dropdown="$dropdown"
+                        :showCta="$hasEntries"
+                        cta="Start"
+                        :columns="$columns"
+                        wire:key="{{ $quiz->id }}" />
                 @endforeach
 
                 <div class="item-list__item">
