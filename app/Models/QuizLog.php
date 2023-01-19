@@ -14,4 +14,9 @@ class QuizLog extends Model
         "rating",
         "quiz_id",
     ];
+
+    public function quiz(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Quiz::class);
+    }
 }

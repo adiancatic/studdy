@@ -34,6 +34,12 @@ class Quiz extends Model
         return $this->hasMany(QuizEntry::class);
     }
 
+    public function logs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(QuizLog::class);
+    }
+    
+
     public function save(array $options = [])
     {
         if (! $this->user_id) {
