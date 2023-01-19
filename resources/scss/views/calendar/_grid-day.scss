@@ -1,0 +1,155 @@
+.calendar__grid--day {
+    flex: initial;
+    height: 85vh;
+    border: 1px solid $c-gray-200;
+    border-radius: 1rem;
+
+    .grid-cols {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .calendar__info {
+        justify-content: flex-start;
+        column-gap: 1rem;
+    }
+
+    .calendar__weekday {
+        justify-content: space-between;
+    }
+
+    .calendar__weekday-date {
+        color: $c-red-500;
+    }
+
+    .calendar__grid-header {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .calendar__grid-body {
+        position: relative;
+        margin-left: 3rem;
+    }
+
+    .calendar__cell {
+        display: flex;
+        flex-direction: column;
+        .calendar__cell-body {
+            flex: 1;
+        }
+    }
+
+    .calendar__cell-body {
+        display: grid;
+        grid-template-columns: repeat(100, 1fr);
+        grid-template-rows: 1rem repeat(24 * 4, 1rem) 1rem;
+        grid-gap: 1px;
+        padding: 0;
+    }
+
+    .calendar__grid-header {
+        //position: relative;
+        position: sticky;
+        top: 0;
+    }
+
+    &.calendar__grid {
+        overflow: auto;
+    }
+
+    .event {
+        display: flex;
+        flex-direction: column;
+        grid-column: 1 / calc(100 + 1);
+        outline: 1px solid #fff;
+    }
+
+    .grid-bg {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-gap: 1px;
+        z-index: -1;
+        pointer-events: none;
+
+        .cell {
+            z-index: -1;
+
+            &--day {
+                display: grid;
+                grid-template-rows: 1rem repeat(24, 1fr) 1rem;
+                grid-gap: 1px;
+            }
+
+            &--hour {
+                display: grid;
+                grid-template-rows: repeat(4, 1fr);
+                grid-gap: 1px;
+                outline: 1px solid $c-gray-200;
+                position: relative;
+            }
+
+            &--quarter {
+                outline: 1px dashed $c-gray-100;
+                &:last-child {
+                    outline: 0;
+                }
+            }
+        }
+    }
+
+    .time-line .time-wrapper,
+    .label-hour {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: absolute;
+        font-size: 0.625rem;
+        top: -0.75em;
+        left: -3rem;
+        width: 3rem;
+        padding: 0 0.75rem;
+        color: $c-gray-500;
+    }
+
+    .time-line {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background-color: rgba($c-red-500, 0.3);
+        opacity: 0;
+        transition: $tr-default;
+
+        .time-wrapper {
+            padding: 0 0.625rem;
+        }
+
+        .time {
+            background-color: #fff;
+            color: $c-red-500;
+            padding: 0 0.125rem;
+            border-radius: 10rem;
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+            background-color: $c-red-500;
+            height: 1px;
+            border-radius: 10rem;
+            z-index: 1;
+            grid-column: 1 !important;
+
+            &::before {
+                content: "";
+                display: block;
+                height: calc(0.5rem + 1px);
+                width: 1px;
+                background-color: $c-red-500;
+                border-radius: 10rem;
+                outline: 1px solid #fff;
+                margin-left: -1px;
+            }
+        }
+    }
+}
