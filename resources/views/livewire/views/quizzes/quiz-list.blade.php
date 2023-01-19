@@ -27,6 +27,11 @@
                                 </a>
                             </x-dropdown.item>
                             <x-dropdown.item type="action">
+                                <button type="button" wire:click="edit('views.quizzes.modal.manage-quiz-entries-modal')">
+                                    <i class="fas fa-fw fa-question-circle"></i>{{ __("Manage questions") }}
+                                </button>
+                            </x-dropdown.item>
+                            <x-dropdown.item type="action">
                                 <button type="button" wire:click="edit('views.quizzes.modal.edit-quiz-modal')">
                                     <i class="far fa-fw fa-pen"></i>{{ __("Edit") }}
                                 </button>
