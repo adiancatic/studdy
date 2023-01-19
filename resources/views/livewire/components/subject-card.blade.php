@@ -29,10 +29,19 @@
 
     <div class="subject-card__body">
         @if(! $model->notebooks->isEmpty())
-            <div class="subject-card__stat-item">
+            <div class="subject-card__stat-item mb-2">
                 <i class="fas fa-fw fa-book"></i>
                 {{ __("Notebooks") }}
                 <span class="subject-card__stat-count">{{ $model->notebooks->count() }}</span>
+            </div>
+        @endif
+
+        @php($quizzes = \App\Models\Quiz::whereIn("note_id", $model->notes->pluck("id"))->get())
+        @if(! $quizzes->isEmpty())
+            <div class="subject-card__stat-item mb-2">
+                <i class="fas fa-fw fa-question-circle"></i>
+                {{ __("Quizzes") }}
+                <span class="subject-card__stat-count">{{ $quizzes->count() }}</span>
             </div>
         @endif
     </div>
